@@ -30,3 +30,9 @@ body {
 #recommended-grid {
   padding-top: 15px;
 }
+
+
+/* personal log page style */
+.tricks-header > h3 {
+  display: inline;
+}
