@@ -1,1 +1,4 @@
 /* script.js */
+
+function onloadHome() {
+}

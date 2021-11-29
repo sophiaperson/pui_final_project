@@ -1,7 +1,32 @@
 /* style.css */
 
-/* General Style */
+/* general style */
 body {
-	padding: 0px;
-	margin: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  display: grid;
+  margin-left: 0px;
+}
+
+.col {
+  padding-left: 0px;
+}
+
+.dummy {
+  background-color: gray;
+  height: 200px;
+  width: 200px;
+}
+
+/* home page style*/
+#recommended-div {
+  padding-left: 50px;
+  padding-bottom: 50px;
+}
+
+#recommended-grid {
+  padding-top: 15px;
 }
