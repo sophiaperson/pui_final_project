@@ -31,6 +31,10 @@ body {
   padding-top: 15px;
 }
 
+#recommended-header > h3 {
+  display: inline;
+}
+
 
 /* personal log page style */
 .tricks-header > h3 {
