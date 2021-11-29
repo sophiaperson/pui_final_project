@@ -40,3 +40,8 @@ body {
 .tricks-header > h3 {
   display: inline;
 }
+
+/* trick detail page style */
+.nav-link.active {
+  color: #FFCA47 !important;
+}
