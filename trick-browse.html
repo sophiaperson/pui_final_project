@@ -5,19 +5,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skate Buddy</title>
+
+  <title>Skate Log</title>
+  <link rel="icon" type="image/svg" href="../images/skateboarding_icon.svg">
+
+  <!--icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--bootstrap stylesheet-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!--custom stylesheet-->
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--general javascript-->
   <script type="text/javascript" href="script.js"></script>
+
+  <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--react-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
+  <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="index.html">Skate Log</a>
+    <a class="navbar-brand" href="index.html">
+      <span class="material-icons">skateboarding</span>Skate Log</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,100 +59,150 @@
     </div>  
   </nav>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+  <div class="flex-container p-5">
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+      <!--trick text info-->
+      <div class="card-body">
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
         </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+      <!--trick text info-->
+      <div class="card-body">
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
         </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+      <!--trick text info-->
+      <div class="card-body">
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
         </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
-        </div>
-      </div>
+      <!--trick text info-->
+      <div class="card-body">
 
-      <div class="col">
-        <div class="browse-category">
-          <div class="dummy"></div>
-          Kickflip tricks
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
         </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
       </div>
     </div>
-    
+
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
+
+      <!--trick text info-->
+      <div class="card-body">
+
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
+        </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
+      </div>
+    </div>
+
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
+
+      <!--trick text info-->
+      <div class="card-body">
+
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
+        </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
+      </div>
+    </div>
+
+    <!--trick card-->
+    <div class="recommended-trick card w-25">
+      <!--trick image-->
+      <a href="tricks/kickflip.html">
+        <div class="dummy"></div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+      </a>
+
+      <!--trick text info-->
+      <div class="card-body">
+
+        <div class="card-title">
+          <h5 class="trick-name">Kickflip Tricks</h5>
+
+        </div>
+
+        <p class="card-text">The board flips 360 degrees along the axis that extends from the nose to the tail of the deck.</p>
+      </div>
+    </div>
+
   </div>
+    
+
 
   <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Skate Log created by Sophia Ho</p>
