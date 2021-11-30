@@ -13,13 +13,32 @@ body {
 
 .col {
   padding-left: 0px;
+  padding-right: 0px;
 }
 
-.dummy {
+.dummy.home {
   background-color: gray;
-  height: 200px;
-  width: 200px;
+  width: 100%;
+  padding-top: 66.67%;
 }
+
+.trick-tag-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.trick-tag {
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid gray;
+  width: fit-content;
+  padding: 3px 7px;
+  margin-right: 3px;
+}
+
+
+
 
 /* home page style*/
 #recommended-div {
@@ -27,19 +46,32 @@ body {
   padding-bottom: 50px;
 }
 
-#recommended-grid {
-  padding-top: 15px;
-}
-
 #recommended-header > h3 {
   display: inline;
 }
+
+.card-title > .trick-name {
+  display: inline;
+}
+
+.card-title > div {
+  display: inline;
+}
+
+
+
+
 
 
 /* personal log page style */
 .tricks-header > h3 {
   display: inline;
 }
+
+
+
+
+
 
 /* trick detail page style */
 .nav-link.active {

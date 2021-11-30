@@ -5,20 +5,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skate Buddy</title>
+
+  <title>Skate Log</title>
+
+  <!--icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--bootstrap stylesheet-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!--custom stylesheet-->
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--general javascript-->
   <script type="text/javascript" href="script.js"></script>
+
+  <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--react-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
+  <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="index.html">Skate Log</a>
+    <a class="navbar-brand" href="index.html">
+      <span class="material-icons">skateboarding</span>Skate Log</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,13 +58,19 @@
     </div>  
   </nav>
 
+  <!--jumbotron with message and search bar-->
   <div class="jumbotron">
-    <h1>Log your Progress,<br>Find New Tricks to Learn!</h1>
 
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search">
+    <!--message-->
+    <div class="mx-auto pb-5">
+      <h1 class="text-center">Log your Progress,<br>Find New Tricks to Learn!</h1>
+    </div>
+
+    <!--search bar-->
+    <div class="input-group w-25 mx-auto pt-5">
+      <input type="text" class="form-control" placeholder="Search skate trick">
       <div class="input-group-append">
-        <button class="btn btn-success" type="submit">
+        <button class="btn btn-primary" type="submit">
           <span>
             <i class="fa fa-search"></i>
             Search
@@ -56,62 +80,66 @@
     </div>
   </div>
 
+  <!--recommended tricks section-->
   <div id="recommended-div">
-    <div id="recommended-header">
+    <!--recommended tricks header-->
+    <div id="recommended-header" class="pb-3">
       <h3>Recommended for You</h3>
       <a href="profile.html">
         <i class="material-icons">keyboard_arrow_right</i>
       </a>
     </div>
 
+    <!--recommended tricks grid-->
     <div id="recommended-grid" class="container">
-      <div class="row">
-        <div class="col">
-          <div class="recommended-trick card" style="width:200px">
-            <div class="dummy"></div>
-            <div class="card-body">
-              <h4 class="card-title">Ollie</h4>
-              <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="col">
-          <div class="recommended-trick card" style="width:200px">
-            <a href="tricks/kickflip.html"><div class="dummy"></div></a>
+      <div class="col">
+        <div class="row">
+          <!--trick card-->
+          <div class="recommended-trick card w-25">
+            <a href="tricks/kickflip.html">
+              <div class="dummy home"></div>
+              <img class="card-img-top" src="..." alt="Card image cap">
+            </a>
             <div class="card-body">
-              <h4 class="card-title">Kickflip</h4>
-              <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="col">
-          <div class="recommended-trick card" style="width:200px">
-            <div class="dummy"></div>
-            <div class="card-body">
-              <h4 class="card-title">Ollie</h4>
-              <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-            </div>
-          </div>
-        </div>
+              <div class="card-title">
+                <h5 class="trick-name">Kickflip</h5>
+                <div class="trick-difficulty text-right float-right">Basic</div>
 
-        <div class="col">
-          <div class="recommended-trick card" style="width:200px">
-            <div class="dummy"></div>
-            <div class="card-body">
-              <h4 class="card-title">Ollie</h4>
-              <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+              </div>
+
+              
+              <!--trick tag grid-->
+              <div class="container trick-tag-container">
+                <div class="row">
+                  <div class="col">
+                    <div class="trick-tag">
+                      Ollie
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="trick-tag">
+                      Kickflip
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="card-text">The skater pops off the tail of the board, flicks diagonally off the heelside edge so that it flips 360 degrees along the axis that extends from the nose to the tail of the deck, and lands back on the board with two feet.</p>
             </div>
           </div>
         </div>
 
       </div>
+
     </div>
 
 
   </div>
 
+  <!--footer-->
   <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Skate Log created by Sophia Ho</p>
   </div>
