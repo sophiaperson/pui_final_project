@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <!--general javascript-->
-  <script type="text/javascript" href="script.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 
   <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,9 +31,10 @@
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 </head>
 
-<body>
+<body onload="onLoad()">
 
   <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -77,6 +78,10 @@
 
         <!--list of links to trick detail pages-->
         <div class="list-group">
+
+          <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+
+
           <a href="tricks/kickflip.html" class="list-group-item trick-link btn-light">
             Kickflip
           </a>
