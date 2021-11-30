@@ -16,7 +16,7 @@ body {
   padding-right: 0px;
 }
 
-.dummy.home {
+.dummy {
   background-color: gray;
   width: 100%;
   padding-top: 66.67%;
@@ -25,6 +25,7 @@ body {
 .trick-tag-container {
   display: flex;
   margin-bottom: 10px;
+  padding: 0px;
 }
 
 .trick-tag {

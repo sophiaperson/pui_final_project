@@ -6,19 +6,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skate Buddy</title>
+
+  <title>Skate Log</title>
+
+  <!--icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--bootstrap stylesheet-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!--custom stylesheet-->
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--general javascript-->
   <script type="text/javascript" href="script.js"></script>
+
+  <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--react-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
+  <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="index.html">Skate Log</a>
+    <a class="navbar-brand" href="index.html">
+      <span class="material-icons">skateboarding</span>Skate Log</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -41,51 +60,77 @@
   </nav>
 
 
-  <div>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search">
-      <div class="input-group-append">
-        <button class="btn btn-success" type="submit">
-          <span>
-            <i class="fa fa-search"></i>
-            Search
-          </span>
-        </button>
-      </div>
+
+  <!--search bar-->
+  <div class="input-group w-25 mx-auto pt-5">
+    <input type="text" class="form-control" placeholder="Search skate trick">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit">
+        <span>
+          <i class="fa fa-search"></i>
+          Search
+        </span>
+      </button>
     </div>
   </div>
 
-  <ul class="list-group search-entry">
+  <!--search results div-->
+  <div class="p-5">
 
-    <li class="list-group-item">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body search-entry text">
-              <h5 class="card-title search-entry title">Kickflip</h5>
-              <h5 class="card-title search-entry difficulty">Basic</h5>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="search-entry trick-tag">Ollie</div>
-                  </div>
+    
+
+
+    <!--search entry list-->
+    <ul class="list-group-flush search-entry">
+
+      <!--number of entries found-->
+      <li class="list-group-item">
+        <div>
+          <h5>5 results</h5>
+        </div>
+      </li>
+
+
+      <!--search entry-->
+      <li class="list-group-item">
+        <div class="card">
+          <div class="row g-0">
+            <!--trick image-->
+            <div class="col-md-4">
+              <a href="tricks/kickflip.html">
+                <div class="dummy"></div>
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </a>
+            </div>
+
+            <!--trick text details-->
+            <div class="col-md-8">
+              <div class="card-body search-entry text">
+                <h5 class="card-title search-entry title">Kickflip</h5>
+                <div class="card-title search-entry difficulty">Basic</div>
+                
+                <!--trick tag flex container-->
+                <div class="container trick-tag-container">
+                  <div class="trick-tag">Ollie</div>
+                  <div class="trick-tag">Kickflip</div>
                 </div>
+
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    
-  </ul>
+
+      
+    </ul>
+
+
+  </div>
 
   
-
+  <!--footer-->
   <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Skate Log created by Sophia Ho</p>
   </div>
