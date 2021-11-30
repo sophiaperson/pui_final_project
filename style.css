@@ -52,11 +52,22 @@ body {
 }
 
 .btn-icon {
-  
+
 }
 
 .btn-icon:hover {
 
+}
+
+.caret-off::before {
+  display: none !important;
+}
+.caret-off::after {
+  display: none !important;
+}
+
+.dropdown-menu {
+  width: max-content;
 }
 
 
@@ -87,6 +98,10 @@ body {
 /* personal log page style */
 .tricks-header > h3 {
   display: inline;
+}
+
+.trick-link {
+  padding: 10px;
 }
 
 

@@ -34,7 +34,7 @@
 
 </head>
 
-<body onload="onLoad()">
+<body onload="onLoadProfile()">
 
   <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -61,100 +61,383 @@
     </div>  
   </nav>
 
+  <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+
+
   <!--three columns: landed, target, recommended-->
   <div class="container p-5">
      <div class="row">
 
       <!--landed tricks column-->
-      <div class="col-sm-3">
+      <div class="col-4">
 
         <!--column header-->
-        <div class="tricks-header">
+        <div class="tricks-header mb-3">
           <h3>Landed</h3>
-          <button class="btn btn-light btn-icon">
-            <i class="fa fa-plus-square-o"></i>
+          <button class="btn btn-light float-right">
+            <span class="material-icons">add_circle_outline</span>
           </button>
         </div>
 
         <!--list of links to trick detail pages-->
         <div class="list-group">
 
-          <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-
-
-          <a href="tricks/kickflip.html" class="list-group-item trick-link btn-light">
+          <!--trick-->
+          <div class="list-group-item">
             Kickflip
-          </a>
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+            <!-- Dropright button -->
+            <div class="btn-group dropright float-right">
+              <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="material-icons">more_vert</span>
+              </button>
+              <!--dropdown menu-->
+              <div class="dropdown-menu">
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+                <!--dropdown item "Details"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">read_more</span>
+                        </div>
+                        <div class="col">
+                          Details
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!--dropdown item "remove"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">remove_circle_outline</span>
+                        </div>
+                        <div class="col">
+                          Remove
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!--trick-->
+          <div class="list-group-item">
+            Kickflip
+
+            <!-- Dropright button -->
+            <div class="btn-group dropright float-right">
+              <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="material-icons">more_vert</span>
+              </button>
+              <!--dropdown menu-->
+              <div class="dropdown-menu">
+
+                <!--dropdown item "Details"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">read_more</span>
+                        </div>
+                        <div class="col">
+                          Details
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!--dropdown item "remove"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">remove_circle_outline</span>
+                        </div>
+                        <div class="col">
+                          Remove
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
+
 
 
       <!--target tricks column-->
-      <div class="col-sm-3">
-        <!--column header-->
-        <div class="tricks-header">
-          <h3>Target</h3>
-          <button class="btn btn-light btn-icon">
-            <i class="fa fa-plus-square-o"></i>
-          </button>
-        </div>
+      <div class="col-4">
 
+        <!--column header-->
+        <div class="tricks-header mb-3">
+          <h3>Target</h3>
+          <button class="btn btn-light float-right">
+            <span class="material-icons">add_circle_outline</span>
+          </button>
+
+        </div>
 
         <!--list of links to trick detail pages-->
         <div class="list-group">
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+          <!--trick-->
+          <div class="list-group-item">
+            Kickflip
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+            <!-- Dropright button -->
+            <div class="btn-group dropright float-right">
+              <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="material-icons">more_vert</span>
+              </button>
+              <!--dropdown menu-->
+              <div class="dropdown-menu">
+
+                <!--dropdown item "Add to landed"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">task_alt</span>
+                        </div>
+                        <div class="col">
+                          Add to landed
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <!--dropdown item "Details"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">read_more</span>
+                        </div>
+                        <div class="col">
+                          Details
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!--dropdown item "remove"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">remove_circle_outline</span>
+                        </div>
+                        <div class="col">
+                          Remove
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+          <!--trick-->
+          <div class="list-group-item">
+            Kickflip
+
+            <!-- Dropright button -->
+            <div class="btn-group dropright float-right">
+              <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="material-icons">more_vert</span>
+              </button>
+              <!--dropdown menu-->
+              <div class="dropdown-menu">
+
+                <!--dropdown item "Add to landed"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">task_alt</span>
+                        </div>
+                        <div class="col">
+                          Add to landed
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <!--dropdown item "Details"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">read_more</span>
+                        </div>
+                        <div class="col">
+                          Details
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!--dropdown item "remove"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">remove_circle_outline</span>
+                        </div>
+                        <div class="col">
+                          Remove
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
 
         </div>
 
       </div>
 
 
+
+
+
+
       <!--recommended tricks column-->
-      <div class="col-sm-3">
+      <div class="col-4">
+
         <!--column header-->
-        <div class="tricks-header">
+        <div class="tricks-header mb-3">
           <h3>Recommended</h3>
-          <button class="btn btn-light btn-icon">
-            <i class="fa fa-plus-square-o"></i>
+          <button class="btn btn-light float-right">
+            <span class="material-icons">add_circle_outline</span>
           </button>
         </div>
 
-
         <!--list of links to trick detail pages-->
         <div class="list-group">
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+          <!--trick-->
+          <div class="list-group-item">
+            Kickflip
 
-          <a href="#" class="list-group-item trick-link btn-light">
-            Ollie
-          </a>
+            <!-- Dropright button -->
+            <div class="btn-group dropright float-right">
+              <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="material-icons">more_vert</span>
+              </button>
+              <!--dropdown menu-->
+              <div class="dropdown-menu">
+
+                <!--dropdown item "Add to landed"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">task_alt</span>
+                        </div>
+                        <div class="col">
+                          Add to landed
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <!--dropdown item "Details"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">read_more</span>
+                        </div>
+                        <div class="col">
+                          Details
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!--dropdown item "remove"-->
+                <div class="dropdown-item">
+                  <button class="btn p-0 m-0">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col mr-3">
+                          <span class="material-icons">remove_circle_outline</span>
+                        </div>
+                        <div class="col">
+                          Remove
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
 
         </div>
+
+      </div>
+
+
+    
 
 
       </div>
