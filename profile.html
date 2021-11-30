@@ -5,19 +5,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skate Buddy</title>
+
+  <title>Skate Log</title>
+  <link rel="shortcut icon" href="images/skateboarding_icon.ico" type="image/x-icon">
+
+  <!--icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--bootstrap stylesheet-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!--custom stylesheet-->
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--general javascript-->
   <script type="text/javascript" href="script.js"></script>
+
+  <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--react-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
+
+  <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="index.html">Skate Log</a>
+    <a class="navbar-brand" href="index.html">
+      <span class="material-icons">skateboarding</span>Skate Log</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,44 +60,99 @@
     </div>  
   </nav>
 
-  <div>
+
+  <!--three columns: landed, target, recommended-->
+  <div class="container p-5">
      <div class="row">
+
+      <!--landed tricks column-->
       <div class="col-sm-3">
+
+        <!--column header-->
         <div class="tricks-header">
           <h3>Landed</h3>
-          <button>
+          <button class="btn btn-light btn-icon">
             <i class="fa fa-plus-square-o"></i>
           </button>
         </div>
 
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="row trick-link">
-              <a href="#">ollie</a>
-            </div>
-          </li>
+        <!--list of links to trick detail pages-->
+        <div class="list-group">
+          <a href="tricks/kickflip.html" class="list-group-item trick-link btn-light">
+            Kickflip
+          </a>
 
-          <li class="list-group-item">
-            <div class="row trick-link">
-              <a href="#">ollie</a>
-            </div>
-          </li>
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
 
-          <li class="list-group-item">
-            <div class="row trick-link">
-              <a href="#">ollie</a>
-            </div>
-          </li>
-          
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
 
-        </ul>
+        </div>
 
       </div>
+
+
+      <!--target tricks column-->
       <div class="col-sm-3">
-        <h3>Target</h3>
+        <!--column header-->
+        <div class="tricks-header">
+          <h3>Target</h3>
+          <button class="btn btn-light btn-icon">
+            <i class="fa fa-plus-square-o"></i>
+          </button>
+        </div>
+
+
+        <!--list of links to trick detail pages-->
+        <div class="list-group">
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+        </div>
+
       </div>
+
+
+      <!--recommended tricks column-->
       <div class="col-sm-3">
-        <h3>Recommended</h3>
+        <!--column header-->
+        <div class="tricks-header">
+          <h3>Recommended</h3>
+          <button class="btn btn-light btn-icon">
+            <i class="fa fa-plus-square-o"></i>
+          </button>
+        </div>
+
+
+        <!--list of links to trick detail pages-->
+        <div class="list-group">
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+          <a href="#" class="list-group-item trick-link btn-light">
+            Ollie
+          </a>
+
+        </div>
+
+
       </div>
     </div> 
   </div>
