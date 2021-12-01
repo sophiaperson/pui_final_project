@@ -42,6 +42,52 @@ function searchButtonOnClick() {
   compareInputData(simpInputValue, inputValue)
 }
 
+// when the user clicks search on the profile page, save the input text as input Value 
+function searchButtonOnClickLog() {
+  const searchInput = document.getElementById('search-input');
+  const inputValue = searchInput.value;
+
+  simpInputValue = simplifyStr(inputValue)
+  compareInputDataLog(simpInputValue, inputValue)
+}
+
+// compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
+function compareInputDataLog(simpInputValue, inputValue) {
+  // loop through names, nicknames, difficulty, prereqs in data and save the names of the tricks that match
+  let allDifficulties = ["basic", "intermediate", "advanced", "easy", "medium", "hard", "difficult"]
+
+  let matches = []
+
+  for (let i=0; i<tricks.length; i++) {
+    // get trick information
+    let name = tricks[i].name
+    let difficulty = tricks[i].difficulty
+    let prereqs = tricks[i].prereqs
+    let nicknames = tricks[i].nicknames
+
+    // simplify strings
+    let simpName = simplifyStr(name)
+    let simpPrereqs = prereqs.map(simplifyStr).join(" ")
+    let simpNicknames = nicknames.map(simplifyStr).join(" ")
+
+    // compare simpInputValue to these strings, and add the name to matches if there is a match
+    if (simpName.includes(simpInputValue)) {
+      matches.push(name)
+    } else if (difficulty.includes(simpInputValue)) {
+      matches.push(name)
+    } else if (simpPrereqs.includes(simpInputValue)) {
+      matches.push(name)
+    } else if (simpNicknames.includes(simpInputValue)) {
+      matches.push(name)
+    }
+  }
+
+  sessionStorage.setItem("searchResults", matches.toString())
+  sessionStorage.setItem("searchInput", inputValue)
+
+  displaySearchResults()
+}
+
 // compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
 function compareInputData(simpInputValue, inputValue) {
   // loop through names, nicknames, difficulty, prereqs in data and save the names of the tricks that match
@@ -75,6 +121,7 @@ function compareInputData(simpInputValue, inputValue) {
 
   sessionStorage.setItem("searchResults", matches.toString())
   sessionStorage.setItem("searchInput", inputValue)
+
   window.location.href = "search.html"
 }
 
@@ -91,6 +138,11 @@ function displaySearchResultsHeader() {
   let message = strNumSearchResults + " results for \"" +  inputValue + "\""
 
   header.innerHTML = message
+}
+
+function displaySearchResults() {
+  displaySearchResultsHeader()
+  // display search result entries
 }
 
 /* onload functions */
@@ -114,7 +166,7 @@ function onLoadProfile() {
 }
 
 function onLoadSearch() {
-  displaySearchResultsHeader()
+  displaySearchResults()
 }
 
 function onLoadTrickDetail() {
