@@ -21,7 +21,6 @@
 
   <!--general javascript-->
   <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="general.js"></script>
 
   <!--bootstrap library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -34,7 +33,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
-<body>
+<body onload="onLoadSearch()">
   <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="index.html">
@@ -64,12 +63,11 @@
 
   <!--search bar-->
   <div class="input-group w-25 mx-auto pt-5">
-    <input type="text" class="form-control" placeholder="Search skate trick">
+    <input id="search-input" type="text" class="form-control" placeholder="Search skate trick">
     <div class="input-group-append">
-      <button class="btn btn-primary" type="submit">
+      <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()">
         <span>
           <i class="fa fa-search"></i>
-          Search
         </span>
       </button>
     </div>
@@ -87,7 +85,7 @@
       <!--number of entries found-->
       <li class="list-group-item">
         <div>
-          <h5>5 results</h5>
+          <h5 id="search-results"></h5>
         </div>
       </li>
 

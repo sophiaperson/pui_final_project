@@ -39,11 +39,11 @@ function searchButtonOnClick() {
   const inputValue = searchInput.value;
 
   simpInputValue = simplifyStr(inputValue)
-  compareInputData(simpInputValue)
+  compareInputData(simpInputValue, inputValue)
 }
 
 // compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
-function compareInputData(simpInputValue) {
+function compareInputData(simpInputValue, inputValue) {
   // loop through names, nicknames, difficulty, prereqs in data and save the names of the tricks that match
   let allDifficulties = ["basic", "intermediate", "advanced", "easy", "medium", "hard", "difficult"]
 
@@ -73,7 +73,24 @@ function compareInputData(simpInputValue) {
     }
   }
 
-  return matches
+  sessionStorage.setItem("searchResults", matches.toString())
+  sessionStorage.setItem("searchInput", inputValue)
+  window.location.href = "search.html"
+}
+
+function displaySearchResultsHeader() {
+  let header = document.getElementById("search-results")
+
+  let strSearchResults = sessionStorage.getItem("searchResults")
+  let inputValue = sessionStorage.getItem("searchInput")
+
+  let arrSearchResults = strSearchResults.split(",")
+  let numSearchResults = arrSearchResults.length
+  let strNumSearchResults = numSearchResults.toString()
+
+  let message = strNumSearchResults + " results for \"" +  inputValue + "\""
+
+  header.innerHTML = message
 }
 
 /* onload functions */
@@ -97,7 +114,7 @@ function onLoadProfile() {
 }
 
 function onLoadSearch() {
-
+  displaySearchResultsHeader()
 }
 
 function onLoadTrickDetail() {
