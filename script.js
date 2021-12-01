@@ -54,7 +54,7 @@ function searchButtonOnClickLog() {
 // compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
 function compareInputDataLog(simpInputValue, inputValue) {
   // loop through names, nicknames, difficulty, prereqs in data and save the names of the tricks that match
-  let allDifficulties = ["basic", "intermediate", "advanced", "easy", "medium", "hard", "difficult"]
+  let otherDifficulties = ["easy", "medium", "hard", "difficult"]
 
   let matches = []
 
@@ -64,6 +64,7 @@ function compareInputDataLog(simpInputValue, inputValue) {
     let difficulty = tricks[i].difficulty
     let prereqs = tricks[i].prereqs
     let nicknames = tricks[i].nicknames
+    let trick = tricks[i]
 
     // simplify strings
     let simpName = simplifyStr(name)
@@ -72,17 +73,27 @@ function compareInputDataLog(simpInputValue, inputValue) {
 
     // compare simpInputValue to these strings, and add the name to matches if there is a match
     if (simpName.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
     } else if (difficulty.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
+    } else if (otherDifficulties.includes(simpInputValue)) {
+      if (simpInputValue.includes("easy") && (difficulty == "basic")) {
+        matches.push(trick)
+      } else if (simpInputValue.includes("medium") && (difficulty == "intermediate")) {
+        matches.push(trick)
+      } else if ((simpInputValue.includes("hard") || (simpInputValue.includes("difficult"))) && (difficulty == "advanced")) {
+        matches.push(trick)
+      }
     } else if (simpPrereqs.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
     } else if (simpNicknames.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
     }
   }
 
-  sessionStorage.setItem("searchResults", matches.toString())
+  console.log(matches)
+
+  sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
   displaySearchResults()
@@ -91,7 +102,7 @@ function compareInputDataLog(simpInputValue, inputValue) {
 // compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
 function compareInputData(simpInputValue, inputValue) {
   // loop through names, nicknames, difficulty, prereqs in data and save the names of the tricks that match
-  let allDifficulties = ["basic", "intermediate", "advanced", "easy", "medium", "hard", "difficult"]
+  let otherDifficulties = ["easy", "medium", "hard", "difficult"]
 
   let matches = []
 
@@ -101,30 +112,96 @@ function compareInputData(simpInputValue, inputValue) {
     let difficulty = tricks[i].difficulty
     let prereqs = tricks[i].prereqs
     let nicknames = tricks[i].nicknames
+    let trick = tricks[i]
 
     // simplify strings
     let simpName = simplifyStr(name)
-    let simpPrereqs = prereqs.map(simplifyStr).join(" ")
-    let simpNicknames = nicknames.map(simplifyStr).join(" ")
+
+    let arrSimpPrereqs = prereqs.map(simplifyStr)
+    let arrSimpNicknames = nicknames.map(simplifyStr)
+    let simpPrereqs = arrSimpPrereqs.join(" ")
+    let simpNicknames = arrSimpNicknames.join(" ")
+
+    let arrInputValue = inputValue.split(" ")
 
     // compare simpInputValue to these strings, and add the name to matches if there is a match
     if (simpName.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
     } else if (difficulty.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
+    } else if (otherDifficulties.includes(simpInputValue)) {
+      if (simpInputValue.includes("easy") && (difficulty == "basic")) {
+        matches.push(trick)
+      } else if (simpInputValue.includes("medium") && (difficulty == "intermediate")) {
+        matches.push(trick)
+      } else if ((simpInputValue.includes("hard") || (simpInputValue.includes("difficult"))) && (difficulty == "advanced")) {
+        matches.push(trick)
+      }
     } else if (simpPrereqs.includes(simpInputValue)) {
-      matches.push(name)
+      matches.push(trick)
     } else if (simpNicknames.includes(simpInputValue)) {
-      matches.push(name)
-    }
+      matches.push(trick)
+    } 
   }
 
-  sessionStorage.setItem("searchResults", matches.toString())
+  console.log(matches)
+
+  sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
   window.location.href = "search.html"
 }
 
+// sort search results
+function sortSearchResults() {
+  let allDifficulties = ["easy", "medium", "hard", "difficult", "basic", "intermediate", "advanced"]
+  let priority1 = []
+  let priority2 = []
+  let priority3 = []
+  let priority4 = []
+  let priority5 = []
+
+  let strResults = sessionStorage.getItem("searchResults")
+  console.log(strResults)
+  let arrResults = JSON.parse(strResults)
+
+  let strInput = sessionStorage.getItem("searchInput")
+  let simpInput = simplifyStr(strInput)
+
+  // order: if difficulty -> don't have to sort
+  // order: if trick name -> 1. match name, 2. match nickname, 3. match prerequisites
+  if (allDifficulties.includes(strInput) == false) {
+    for (let i=0; i<arrResults.length; i++) {
+      let trick = arrResults[i]
+      if (trick.name == simpInput) {
+        priority1.push(trick.name)
+      } else if (trick.nicknames.includes(simpInput)) {
+        priority2.push(trick.name)
+      } else if (trick.name.includes(simpInput)) {
+        priority3.push(trick.name)
+      } else if (trick.nicknames.includes(simpInput)) {
+        priority4.push(trick.name)
+      } else {
+        priority5.push(trick.name)
+      }
+    }
+  }
+  
+  // reverse priority lists individually then join them
+  priority1.reverse()
+  priority2.reverse()
+  priority3.reverse()
+  priority4.reverse()
+  priority5.reverse()
+
+  let sortedResults = priority1.concat(priority2, priority3, priority4, priority5)
+  let strSortedResults = sortedResults.toString()
+
+  sessionStorage.setItem("searchResults", strSortedResults)
+
+}
+
+// display number of results and search input
 function displaySearchResultsHeader() {
   let header = document.getElementById("search-results")
 
@@ -140,7 +217,11 @@ function displaySearchResultsHeader() {
   header.innerHTML = message
 }
 
+
+// displat search results
 function displaySearchResults() {
+  // sort results before displaying them
+  sortSearchResults()
   displaySearchResultsHeader()
   // display search result entries
 }
@@ -245,42 +326,42 @@ const fs_180_kickflip = {name: "frontside 180 kickflip",
     difficulty: "intermediate",
     prereqs: ["ollie", "frontside 180", "kickflip"], 
     description: "Pop and scoop the board with your back foot as you rotate 180 degrees frontside with the board and flick off the heelside edge of the board to flip it 360 degrees.", 
-    nicknames: ["frontside flip"]
+    nicknames: ["frontside flip", "frontside kickflip"]
   }
 
 const bs_180_kickflip = {name: "backside 180 kickflip", 
     difficulty: "intermediate",
     prereqs: ["ollie", "backside 180", "kickflip"], 
     description: "Pop and scoop the board with your back foot as you rotate 180 degrees backside with the board and flick off the heelside edge of the board to flip it 360 degrees.", 
-    nicknames: ["backside flip"]
+    nicknames: ["backside flip", "backside kickflip"]
   }
 
 const fs_180_heelflip = {name: "frontside 180 heelflip", 
     difficulty: "intermediate",
     prereqs: ["ollie", "frontside 180", "heelflip"], 
     description: "Pop and scoop the board with your back foot as you rotate 180 degrees frontside with the board and flick off the toeside edge of the board to flip it 360 degrees.", 
-    nicknames: ["frontside heel"]
+    nicknames: ["frontside heel", "frontside heelflip"]
   }
 
 const bs_180_heelflip = {name: "backside 180 heelflip", 
     difficulty: "intermediate",
     prereqs: ["ollie", "backside 180", "heelflip"], 
     description: "Pop and scoop the board with your back foot as you rotate 180 degrees backside with the board and flick off the toeside edge of the board to flip it 360 degrees.", 
-    nicknames: ["backside heel"]
+    nicknames: ["backside heel", "frontside heelflip"]
   }
 
 const d_kickflip = {name: "double kickflip", 
     difficulty: "intermediate",
     prereqs: ["ollie", "kickflip"], 
     description: "Pop the board off the ground with your back foot and flick off the side of the nose towards the heelside edge with your front foot to make the board rotate 720 degrees.", 
-    nicknames: ["double flip"]
+    nicknames: ["double flip", "doubleflip"]
   }
 
 const d_heelflip = {name: "double heelflip", 
     difficulty: "intermediate",
     prereqs: ["ollie", "heelflip"], 
     description: "Pop the board off the ground with your back foot and flick off the side of the nose towards the toeside edge with your front foot to make the board rotate 720 degrees.", 
-    nicknames: ["double heel"]
+    nicknames: ["double heel", "doubleheel", "doubleheelflip"]
   }
 
 const tricks = [ollie, bs_shuv, fs_shuv, bs_180, fs_180, kickflip, heelflip, v_kickflip, v_heelflip, bs_180_kickflip, fs_180_kickflip, bs_180_heelflip, fs_180_heelflip, d_kickflip, d_heelflip]
