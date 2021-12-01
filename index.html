@@ -33,7 +33,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
-<body>
+<body onload="onLoadHome()">
   <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="index.html">
@@ -69,12 +69,11 @@
 
     <!--search bar-->
     <div class="input-group w-25 mx-auto pt-5">
-      <input type="text" class="form-control" placeholder="Search skate trick">
+      <input id="search-input" type="text" class="form-control" placeholder="Search skate trick">
       <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">
+        <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()">
           <span>
             <i class="fa fa-search"></i>
-            Search
           </span>
         </button>
       </div>
@@ -86,7 +85,7 @@
   <div id="recommended-div">
     <!--recommended tricks header-->
     <div id="recommended-header" class="pb-3">
-      <h3>Recommended for You</h3>
+      <h3>Your Current Targets</h3>
       <a href="profile.html">
         <i class="material-icons">keyboard_arrow_right</i>
       </a>
