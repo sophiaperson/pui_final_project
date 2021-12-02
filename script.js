@@ -218,12 +218,63 @@ function displaySearchResultsHeader() {
 }
 
 
-// displat search results
+// display search results
 function displaySearchResults() {
   // sort results before displaying them
   sortSearchResults()
   displaySearchResultsHeader()
   // display search result entries
+  onClickAdd()
+}
+
+// remove trick from log
+function onClickRemove() {
+  // attach function to buttons to remove tricks
+  $(document).ready(function(){
+    $('.remove-trick-btn').click(function() {
+      // find parent that has class  list-group-item
+      let listGroup = $(this).closest('.list-group-item')
+      // find its child that has class trick-name
+      let trickName = $(listGroup).find('.trick-name').text()
+      console.log(trickName)
+    })
+  })
+}
+
+// return array of names of tricks as strings
+function strArrTricks() {
+  let strTricksArr = []
+  for (let i=0; i<tricks.length; i++) {
+    strTricksArr.push(tricks[i])
+  }
+  strTricksArr.reverse()
+  return strTricksArr
+}
+
+// add trick to log (landed, target)
+function onClickAdd() {
+  $(document).ready(function() {
+    $(".add-landed-btn").click(function() {
+      let landedTricks = JSON.parse(localStorage.getItem("landed"))
+      // find name of trick associated with add to landed button
+      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      // add trick associated with this name into the value associated with the key "landed" in local storage
+      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
+      landedTricks.push(tricks[trickIndex])
+      landedTricks.JSON.stringify()
+      localStorage.set("landed", landedTricks)
+    })
+    $(".add-target-btn").click(function() {
+      let targetTricks = JSON.parse(localStorage.getItem("target"))
+      // find name of trick associated with add to target button
+      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      // add trick associated with this name into the value associated with the key "target" in local storage
+      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
+      targetTricks.push(tricks[trickIndex])
+      targetTricks.JSON.stringify()
+      localStorage.set("target", landedTricks)
+    })
+  })
 }
 
 /* onload functions */
@@ -244,6 +295,10 @@ function onLoadHome() {
 
 function onLoadProfile() {
   handlePopover()
+  // attach function to buttons to remove tricks
+  onClickRemove()
+  // attach function to buttons to add tricks
+  onClickAdd()
 }
 
 function onLoadSearch() {
@@ -255,7 +310,7 @@ function onLoadTrickDetail() {
 }
 
 function onLoadBrowse() {
-
+  
 }
 
 
