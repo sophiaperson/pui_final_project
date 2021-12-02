@@ -236,7 +236,15 @@ function onClickRemove() {
       let listGroup = $(this).closest('.list-group-item')
       // find its child that has class trick-name
       let trickName = $(listGroup).find('.trick-name').text()
-      console.log(trickName)
+      // find out which column this is 
+      let columnName = $(trickName).closest('.trick-col').find('.trick-col-name').text()
+      // find the tricks already in this column in local storage
+      let colTricks = JSON.parse(localStorage.getItem(columnName.toLowerCase()))
+      // add trick associated with this name into the value associated with the key "landed" in local storage
+      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
+      colTricks.push(tricks[trickIndex])
+      colTricks.JSON.stringify()
+      localStorage.set(colName.toLowerCase(), landedTricks)
     })
   })
 }
