@@ -91,8 +91,6 @@ function compareInputDataLog(simpInputValue, inputValue) {
     }
   }
 
-  console.log(matches)
-
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
@@ -144,7 +142,6 @@ function compareInputData(simpInputValue, inputValue) {
     } 
   }
 
-  console.log(matches)
 
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
@@ -162,7 +159,7 @@ function sortSearchResults() {
   let priority5 = []
 
   let strResults = sessionStorage.getItem("searchResults")
-  console.log(strResults)
+
   let arrResults = JSON.parse(strResults)
 
   let strInput = sessionStorage.getItem("searchInput")
@@ -241,8 +238,10 @@ function onClickRemove() {
       let list1 = storedTricks.slice(0, trickIndex)
       let list2 = storedTricks.slice(trickIndex+1)
       storedTricks = list1.concat(list2)
-      storedTricksJSON = storedTricks.JSON.stringify()
-      localStorage.set(colName, storedTricks)
+      storedTricksJSON = JSON.stringify(storedTricks)
+      localStorage.setItem(colName, storedTricks)
+
+      alert(trickName + " removed from " + colName)
     })
   })
 }
@@ -266,8 +265,9 @@ function onClickAdd() {
       // add trick associated with this name into the value associated with the key "landed" in local storage
       let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
       landedTricks.push(tricks[trickIndex])
-      landedTricks.JSON.stringify()
-      localStorage.set("landed", landedTricks)
+      let landedTricksJsonStr = JSON.stringify(landedTricks)
+      localStorage.setItem("landed", landedTricksJsonStr)
+      alert(trickName + " added to landed")
     })
     $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -276,14 +276,15 @@ function onClickAdd() {
       // add trick associated with this name into the value associated with the key "target" in local storage
       let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
       targetTricks.push(tricks[trickIndex])
-      targetTricks.JSON.stringify()
-      localStorage.set("target", landedTricks)
+      let targetTricksJsonStr = JSON.stringify(targetTricks)
+      localStorage.setItem("target", targetTricksJsonStr)
+      alert(trickName + " added to target")
     })
   })
 }
 
-/* onload functions */
-function onLoadHome() {
+// initialize localStorage data
+function initLocalStorage() {
   // create localStorage for personal log data if does not exist
   const landed = localStorage.getItem("landed")
   const target = localStorage.getItem("target")
@@ -293,12 +294,20 @@ function onLoadHome() {
     localStorage.setItem("target", JSON.stringify([]))
     localStorage.setItem("recommended", JSON.stringify([]))
   } 
+}
+
+/* onload functions */
+function onLoadHome() {
+  // create localStorage for personal log data if does not exist
+  initLocalStorage()
   // display three current targets
   
   // search bar functionality
 }
 
 function onLoadProfile() {
+  // create localStorage for personal log data if does not exist
+  initLocalStorage()
   handlePopover()
   // attach function to buttons to remove tricks
   onClickRemove()
@@ -307,15 +316,31 @@ function onLoadProfile() {
 }
 
 function onLoadSearch() {
+  // create localStorage for personal log data if does not exist
+  initLocalStorage()
   displaySearchResults()
+  // attach function to buttons to remove tricks
+  onClickRemove()
+  // attach function to buttons to add tricks
+  onClickAdd()
 }
 
 function onLoadTrickDetail() {
-
+  // create localStorage for personal log data if does not exist
+  initLocalStorage()
+  // attach function to buttons to remove tricks
+  onClickRemove()
+  // attach function to buttons to add tricks
+  onClickAdd()
 }
 
 function onLoadBrowse() {
-  
+  // create localStorage for personal log data if does not exist
+  initLocalStorage()
+  // attach function to buttons to remove tricks
+  onClickRemove()
+  // attach function to buttons to add tricks
+  onClickAdd()
 }
 
 

@@ -68,10 +68,10 @@
     </div>
 
     <!--search bar-->
-    <div class="input-group w-25 mx-auto pt-5">
-      <input id="search-input" type="text" class="form-control" placeholder="Search skate trick">
+    <div class="input-group search-bar mx-auto pt-5">
+      <input id="search-input" type="text" class="form-control" placeholder="Search skate trick (e.g. kickflip)">
       <div class="input-group-append">
-        <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()">
+        <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()" value="search">
           <span>
             <i class="fa fa-search"></i>
           </span>
@@ -97,7 +97,7 @@
       <div class="col">
         <div class="row">
           <!--trick card-->
-          <div class="recommended-trick card w-25">
+          <div class="recommended-trick card home-card">
             <a href="tricks/kickflip.html">
               <div class="dummy"></div>
               <img class="card-img-top" src="..." alt="Card image cap">

@@ -78,6 +78,11 @@ section {
   margin-bottom: 3rem;
 }
 
+.search-bar {
+  width: 25%;
+  min-width: 16rem;
+}
+
 
 
 /* home page style*/
@@ -98,6 +103,11 @@ section {
   display: inline;
 }
 
+.home-card {
+  width: 25%;
+  min-width: 16rem;
+
+}
 
 
 

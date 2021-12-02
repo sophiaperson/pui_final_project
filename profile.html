@@ -284,7 +284,7 @@
         <!--column header-->
         <div class="tricks-header mb-3">
           <h3 class="trick-col-name">Target</h3>
-          <button class="btn btn-light float-right">
+          <button class="btn btn-light float-right" data-toggle="modal" data-target="#target-modal">
             <span class="material-icons">add_circle_outline</span>
           </button>
 
@@ -307,7 +307,7 @@
 
                 <!--dropdown item "Add to landed"-->
                 <div class="dropdown-item">
-                  <button class="btn p-0 m-0">
+                  <button class="btn p-0 m-0 add-landed-btn">
                     <div class="container">
                       <div class="row">
                         <div class="col mr-3">
@@ -341,7 +341,7 @@
 
                 <!--dropdown item "remove"-->
                 <div class="dropdown-item">
-                  <button class="btn p-0 m-0">
+                  <button class="btn p-0 m-0 remove-target-btn">
                     <div class="container">
                       <div class="row">
                         <div class="col mr-3">
@@ -445,9 +445,6 @@
         <!--column header-->
         <div class="tricks-header mb-3">
           <h3 class="trick-col-name">Recommended</h3>
-          <button class="btn btn-light float-right">
-            <span class="material-icons">add_circle_outline</span>
-          </button>
         </div>
 
         <!--list of links to trick detail pages-->
