@@ -174,28 +174,21 @@ function sortSearchResults() {
     for (let i=0; i<arrResults.length; i++) {
       let trick = arrResults[i]
       if (trick.name == simpInput) {
-        priority1.push(trick.name)
+        priority1.push(trick)
       } else if (trick.nicknames.includes(simpInput)) {
-        priority2.push(trick.name)
+        priority2.push(trick)
       } else if (trick.name.includes(simpInput)) {
-        priority3.push(trick.name)
+        priority3.push(trick)
       } else if (trick.nicknames.includes(simpInput)) {
-        priority4.push(trick.name)
+        priority4.push(trick)
       } else {
-        priority5.push(trick.name)
+        priority5.push(trick)
       }
     }
   }
-  
-  // reverse priority lists individually then join them
-  priority1.reverse()
-  priority2.reverse()
-  priority3.reverse()
-  priority4.reverse()
-  priority5.reverse()
 
   let sortedResults = priority1.concat(priority2, priority3, priority4, priority5)
-  let strSortedResults = sortedResults.toString()
+  let strSortedResults = JSON.stringify(sortedResults)
 
   sessionStorage.setItem("searchResults", strSortedResults)
 
@@ -208,7 +201,7 @@ function displaySearchResultsHeader() {
   let strSearchResults = sessionStorage.getItem("searchResults")
   let inputValue = sessionStorage.getItem("searchInput")
 
-  let arrSearchResults = strSearchResults.split(",")
+  let arrSearchResults = JSON.parse(strSearchResults)
   let numSearchResults = arrSearchResults.length
   let strNumSearchResults = numSearchResults.toString()
 
@@ -237,14 +230,19 @@ function onClickRemove() {
       // find its child that has class trick-name
       let trickName = $(listGroup).find('.trick-name').text()
       // find out which column this is 
-      let columnName = $(trickName).closest('.trick-col').find('.trick-col-name').text()
+      let column = $(listGroup).closest('.trick-col')
+      let colName = $(column).find('.trick-col-name').text()
+      colName = colName.toLowerCase()
       // find the tricks already in this column in local storage
-      let colTricks = JSON.parse(localStorage.getItem(columnName.toLowerCase()))
-      // add trick associated with this name into the value associated with the key "landed" in local storage
-      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
-      colTricks.push(tricks[trickIndex])
-      colTricks.JSON.stringify()
-      localStorage.set(colName.toLowerCase(), landedTricks)
+      let storedTricks = JSON.parse(localStorage.getItem(colName))
+      // remove trick associated with this name from the value associated with the key (colName) in local storage
+      trickName = trickName.toLowerCase()
+      let trickIndex = strArrTricks().indexOf(trickName)
+      let list1 = storedTricks.slice(0, trickIndex)
+      let list2 = storedTricks.slice(trickIndex+1)
+      storedTricks = list1.concat(list2)
+      storedTricksJSON = storedTricks.JSON.stringify()
+      localStorage.set(colName, storedTricks)
     })
   })
 }
@@ -253,9 +251,8 @@ function onClickRemove() {
 function strArrTricks() {
   let strTricksArr = []
   for (let i=0; i<tricks.length; i++) {
-    strTricksArr.push(tricks[i])
+    strTricksArr.push(tricks[i].name)
   }
-  strTricksArr.reverse()
   return strTricksArr
 }
 
@@ -292,9 +289,9 @@ function onLoadHome() {
   const target = localStorage.getItem("target")
   const recommended = localStorage.getItem("recommended")
   if (landed == null) {
-    localStorage.setItem("landed", [])
-    localStorage.setItem("target", [])
-    localStorage.setItem("recommended", [])
+    localStorage.setItem("landed", JSON.stringify([]))
+    localStorage.setItem("target", JSON.stringify([]))
+    localStorage.setItem("recommended", JSON.stringify([]))
   } 
   // display three current targets
   
