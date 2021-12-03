@@ -90,6 +90,7 @@ function compareInputDataLog(simpInputValue, inputValue) {
       matches.push(trick)
     }
   }
+  console.log("doing seomthing sus")
 
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
@@ -143,6 +144,7 @@ function compareInputData(simpInputValue, inputValue) {
   }
 
 
+  console.log("doing sus")
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
@@ -189,6 +191,7 @@ function sortSearchResults() {
 
   sessionStorage.setItem("searchResults", strSortedResults)
 
+  console.log("sortResults is running hella")
 }
 
 // display number of results and search input
@@ -197,6 +200,10 @@ function displaySearchResultsHeader() {
 
   let strSearchResults = sessionStorage.getItem("searchResults")
   let inputValue = sessionStorage.getItem("searchInput")
+
+  if (inputValue == "") {
+    return
+  }
 
   let arrSearchResults = JSON.parse(strSearchResults)
   let numSearchResults = arrSearchResults.length
@@ -210,11 +217,10 @@ function displaySearchResultsHeader() {
 
 // display search results
 function displaySearchResults() {
+
   // sort results before displaying them
   sortSearchResults()
   displaySearchResultsHeader()
-  // display search result entries
-  onClickAdd()
 }
 
 // remove trick from log
@@ -255,7 +261,31 @@ function strArrTricks() {
   return strTricksArr
 }
 
-// add trick to log (landed, target)
+// removes duplicate tricks in an array
+function removeDupes(arr) {
+  if (arr.length <= 1) return arr
+  let arrNames = []
+  for (let i=0; i<arr.length; i++) {
+    arrNames = arr[i].name
+  }
+  let resultArr = []
+  let dummyArr =[]
+  let numArr = []
+  for (let i=1; arrNames.length; i++) {
+    if (dummyArr.includes(arrNames[i])) {
+      numArr.push(arrNames[i])
+    }
+    dummyArr.push(arrNames[i])
+  }
+  for (let i=0; i<numArr.length; i++) {
+    let dupeIndex = numArr[i]
+    arr.splice(dupeIndex)
+  }
+  console.log("removeDupes is running hella")
+  return arr
+}
+
+// add trick to log (landed, target), only works for the buttons on the cards
 function onClickAdd() {
   $(document).ready(function() {
     $(".add-landed-btn").click(function() {
@@ -263,8 +293,11 @@ function onClickAdd() {
       // find name of trick associated with add to landed button
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "landed" in local storage
-      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
+      let arrStrTrickNames = strArrTricks()
+      trickName = trickName.toLowerCase()
+      let trickIndex = arrStrTrickNames.indexOf(trickName)
       landedTricks.push(tricks[trickIndex])
+
       let landedTricksJsonStr = JSON.stringify(landedTricks)
       localStorage.setItem("landed", landedTricksJsonStr)
       alert(trickName + " added to landed")
@@ -274,8 +307,58 @@ function onClickAdd() {
       // find name of trick associated with add to target button
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "target" in local storage
-      let trickIndex = strArrTricks().indexOf(trickName.toLowerCase())
+      trickName = trickName.toLowerCase()
+      let arrStrTrickNames = strArrTricks()
+      let trickIndex = arrStrTrickNames.indexOf(trickName)
       targetTricks.push(tricks[trickIndex])
+
+      let targetTricksJsonStr = JSON.stringify(targetTricks)
+      localStorage.setItem("target", targetTricksJsonStr)
+      alert(trickName + " added to target")
+    })
+  })
+  console.log("onClickAdd is running hela")
+}
+
+function trickArrToStrArr(trickArr) {
+  let res = []
+  for (let i=0; i<trickArr.length; i++) {
+    res.push(trickArr[i].name)
+  }
+  return res
+}
+
+// add trick to log (landed, target)
+function onClickAddLog() {
+  $(document).ready(function() {
+    $(".add-landedl-log-btn").click(function() {
+      let landedTricks = JSON.parse(localStorage.getItem("landed"))
+      // find name of trick associated with add to landed button
+      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      // add trick associated with this name into the value associated with the key "landed" in local storage
+      let arrStrTrickNames = strArrTricks()
+      trickName = trickName.toLowerCase()
+      let trickIndex = arrStrTrickNames.indexOf(trickName)
+      let landedTricksStrArr = trickArrToStrArr(landedTricks)
+      if (!landedTricksStrArr.includes(trickName)) {
+        landedTricks.push(tricks[trickIndex])
+        let landedTricksJsonStr = JSON.stringify(landedTricks)
+        localStorage.setItem("landed", landedTricksJsonStr)
+        alert(trickName + " added to landed")
+      } else {
+        alert("tried to add dupe trick to landed")
+      }
+    })
+    $(".add-target-log-btn").click(function() {
+      let targetTricks = JSON.parse(localStorage.getItem("target"))
+      // find name of trick associated with add to target button
+      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      // add trick associated with this name into the value associated with the key "target" in local storage
+      trickName = trickName.toLowerCase()
+      let arrStrTrickIndex = strArrTricks()
+      let trickIndex = arrStrTrickNames.indexOf(trickName)
+      targetTricks.push(tricks[trickIndex])
+
       let targetTricksJsonStr = JSON.stringify(targetTricks)
       localStorage.setItem("target", targetTricksJsonStr)
       alert(trickName + " added to target")
@@ -289,56 +372,55 @@ function initLocalStorage() {
   const landed = localStorage.getItem("landed")
   const target = localStorage.getItem("target")
   const recommended = localStorage.getItem("recommended")
+  const searchInput = sessionStorage.getItem("searchInput")
+  const searchResults = sessionStorage.getItem("searchResults")
+  const sessionResults = sessionStorage.getItem("sessionResults")
   if (landed == null) {
     localStorage.setItem("landed", JSON.stringify([]))
-    localStorage.setItem("target", JSON.stringify([]))
-    localStorage.setItem("recommended", JSON.stringify([]))
   } 
+  if (target == null) localStorage.setItem("target", JSON.stringify([]))
+  if (recommended == null) localStorage.setItem("recommended", JSON.stringify([]))
+  if (searchInput == null) {
+    sessionStorage.setItem("searchInput", "")
+    
+  } if (sessionResults == null) {
+    sessionStorage.setItem("searchResults", JSON.stringify([]))
+  }
 }
 
 /* onload functions */
 function onLoadHome() {
   // create localStorage for personal log data if does not exist
   initLocalStorage()
-  // display three current targets
+  // display current targets
   
-  // search bar functionality
+  // search bar functionality (done with html onclick already)
+
+  // attach function to buttons to add tricks
+  onClickAdd()
 }
 
 function onLoadProfile() {
-  // create localStorage for personal log data if does not exist
-  initLocalStorage()
   handlePopover()
-  // attach function to buttons to remove tricks
-  onClickRemove()
   // attach function to buttons to add tricks
   onClickAdd()
+  // attach function to buttons to remove tricks
+  onClickRemove()
 }
 
 function onLoadSearch() {
-  // create localStorage for personal log data if does not exist
-  initLocalStorage()
   displaySearchResults()
-  // attach function to buttons to remove tricks
-  onClickRemove()
   // attach function to buttons to add tricks
   onClickAdd()
+  
 }
 
 function onLoadTrickDetail() {
-  // create localStorage for personal log data if does not exist
-  initLocalStorage()
-  // attach function to buttons to remove tricks
-  onClickRemove()
   // attach function to buttons to add tricks
   onClickAdd()
 }
 
 function onLoadBrowse() {
-  // create localStorage for personal log data if does not exist
-  initLocalStorage()
-  // attach function to buttons to remove tricks
-  onClickRemove()
   // attach function to buttons to add tricks
   onClickAdd()
 }

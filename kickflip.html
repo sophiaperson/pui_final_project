@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Skate Log</title>
-  <link rel="shortcut icon" href="../images/skateboarding_icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/skateboarding_icon.ico" type="image/x-icon">
 
   <!--icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -36,7 +36,7 @@
 </head>
 
 <!--body contains spyscroll-->
-<body data-spy="scroll" data-target="#scrollspy1" data-offset="0">
+<body data-spy="scroll" data-target="#scrollspy1" data-offset="0" onload="onLoadTrickDetail()">
 
   <!--nav bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -176,7 +176,7 @@
 
                       <!--dropdown item "Add to landed"-->
                       <div class="dropdown-item">
-                        <button class="btn p-0 m-0 add-landed-btn">
+                        <button class="btn p-0 m-0 add-landed-log-btn">
                           <div class="container">
                             <div class="row">
                               <div class="col mr-3">
@@ -209,7 +209,7 @@
                       <!--dropdown item "Details"-->
                       <div class="dropdown-item">
                         <button class="btn p-0 m-0">
-                          <a href="tricks/kickflip.html">
+                          <a href="kickflip.html">
                             <div class="container">
                               <div class="row">
                                 <div class="col mr-3">
@@ -352,7 +352,9 @@
             <section id="examples">
               <h3>Examples</h3>
               <div class="mb-3">
+                <!--
                 <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+              -->
               </div>
             </section>
 
@@ -380,7 +382,7 @@
                       <!--dropdown item "Details"-->
                       <div class="dropdown-item">
                         <button class="btn p-0 m-0">
-                          <a href="tricks/kickflip.html">
+                          <a href="kickflip.html">
                             <div class="container">
                               <div class="row">
                                 <div class="col mr-3">
@@ -413,19 +415,53 @@
                     <!--dropdown menu-->
                     <div class="dropdown-menu">
 
-                      <!--dropdown item "Details"-->
+                      <!--dropdown item "Add to landed"-->
                       <div class="dropdown-item">
-                        <button class="btn p-0 m-0">
+                        <button class="btn p-0 m-0 add-landed-log-btn">
                           <div class="container">
                             <div class="row">
                               <div class="col mr-3">
-                                <span class="material-icons">read_more</span>
+                                <span class="material-icons">task_alt</span>
                               </div>
                               <div class="col">
-                                Details
+                                Add to landed
                               </div>
                             </div>
                           </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Add to target"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0 add-target-btn">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col mr-3">
+                                <span class="material-icons">outlined_flag</span>
+                              </div>
+                              <div class="col">
+                                Add to landed
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Details"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0">
+                          <a href="kickflip.html">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col mr-3">
+                                  <span class="material-icons">read_more</span>
+                                </div>
+                                <div class="col">
+                                  Details
+                                </div>
+                              </div>
+                            </div>
+                          </a>
                         </button>
                       </div>
 
