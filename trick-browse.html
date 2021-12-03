@@ -59,87 +59,59 @@
     </div>  
   </nav>
 
-  <div class="flex-container p-5">
-    <!--trick card-->
-    <div class="recommended-trick card w-25">
-      <!--trick image-->
-      <a href="kickflip.html">
-        <div class="dummy"></div>
-        <img class="card-img-top" src="..." alt="Card image cap">
-      </a>
+  <div class="p-5">
+    <!--search entry list-->
+    <ul class="list-group-flush search-entry">
 
-      <!--trick text info-->
-      <div class="card-body">
-
-        <div class="card-title">
-          <h5 class="trick-name">Basic Tricks</h5>
-
+      <!--number of entries found-->
+      <li class="list-group-item">
+        <div>
+          <h5 id="search-results">15 Tricks</h5>
         </div>
+      </li>
 
-        <p class="card-text">Foundational skate tricks</p>
-      </div>
-    </div>
 
-    <!--trick card-->
-    <div class="recommended-trick card w-25">
-      <!--trick image-->
-      <a href="kickflip.html">
-        <div class="dummy"></div>
-        <img class="card-img-top" src="..." alt="Card image cap">
-      </a>
+      <!--search entry-->
+      <li class="list-group-item">
+        <div class="card">
+          <div class="row g-0">
+            <!--trick image-->
+            <div class="col-md-4">
+              <a href="kickflip.html">
+                <div class="dummy"></div>
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </a>
+            </div>
 
-      <!--trick text info-->
-      <div class="card-body">
+            <!--trick text details-->
+            <div class="col-md-8">
+              <div class="card-body search-entry text">
+                <h5 class="card-title search-entry trick-name">Kickflip</h5>
+                <div class="card-title search-entry trick-difficulty">Basic</div>
+                
+                <!--trick tag flex container-->
+                <div class="container trick-tag-container">
+                  <div class="trick-tag">Ollie</div>
+                  <div class="trick-tag">Kickflip</div>
+                </div>
 
-        <div class="card-title">
-          <h5 class="trick-name">Intermediate Tricks</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
+                <div>
+                  <button type="submit" class="btn btn-primary add-landed-btn">Add to landed</button>
+                  <button type="submit" class="btn btn-primary add-target-btn">Add to target</button>
+                </div>
+              
+
+              </div>
+            </div>
+          </div>
         </div>
-
-        <p class="card-text">Tricks that combine two basic tricks or involve adding more flips or rotations to a single basic trick</p>
-      </div>
-    </div>
+      </li>
 
 
-    <!--trick card-->
-    <div class="recommended-trick card w-25">
-      <!--trick image-->
-      <a href="kickflip.html">
-        <div class="dummy"></div>
-        <img class="card-img-top" src="..." alt="Card image cap">
-      </a>
-
-      <!--trick text info-->
-      <div class="card-body">
-
-        <div class="card-title">
-          <h5 class="trick-name">Advanced Tricks</h5>
-
-        </div>
-
-        <p class="card-text">Tricks that combine more than two basic tricks or two intermediate tricks</p>
-      </div>
-    </div>
-
-    <!--trick card-->
-    <div class="recommended-trick card w-25">
-      <!--trick image-->
-      <a href="tricks/kickflip.html">
-        <div class="dummy"></div>
-        <img class="card-img-top" src="..." alt="Card image cap">
-      </a>
-
-      <!--trick text info-->
-      <div class="card-body">
-
-        <div class="card-title">
-          <h5 class="trick-name">All Tricks</h5>
-
-        </div>
-
-        <p class="card-text">All tricks on this site</p>
-      </div>
-    </div>
+      
+    </ul>
 
 
   </div>
