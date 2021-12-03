@@ -469,6 +469,194 @@ function createSearchEntry(trickName) {
 
 }
 
+function createQuickEntry(col, trickName) {
+  const lgi = document.createElement("div")
+  lgi.classList.add("list-group-item")
+
+  const header = document.createElement("span")
+  header.textContent = capitalizeFirstLetter(trickName)
+
+  const dropright = document.createElement("div")
+  dropright.classList.add("btn-group", "dropright", "float-right")
+
+  const btn = document.createElement("button")
+  btn.type = "button"
+  btn.classList.add("btn", "btn-light", "dropdown-toggle", "caret-off")
+  btn.dataToggle = "dropdown"
+  btn.ariaHaspopup = "true"
+  btn.ariaExpanded ="false"
+
+  const icon = document.createElement("span")
+  icon.textContent = "more_vert"
+  const dropdown = createDropdownMenu(col, trickName)
+
+  btn.appendChild(icon)
+  dropright.appendChild(btn)
+  dropright.appendChild(dropdown)
+  header.appendChild(dropright)
+  lgi.appendChild(header)
+
+  return lgi
+}
+
+function createDropdownMenu(col, trickName) {
+  if (col == "landed") {
+    const dropdown = document.createElement("div")
+    dropdown.classList.add("dropdown-menu")
+
+    const divider = document.createElement("div")
+    divider.classList.add("dropdown-divider")
+
+    const details = createDetailsOption(trickName)
+    const remove = createRemoveOption()
+
+    dropdown.appendChild(details)
+    dropdown.appendChild(divider)
+    dropdown.appendChild(remove)
+  } else if (col == "target") {
+    const dropdown = document.createElement("div")
+    dropdown.classList.add("dropdown-menu")
+
+    const divider = document.createElement("div")
+    divider.classList.add("dropdown-divider")
+
+    const addLanded = createAddLandedOption()
+    const details = createDetailsOption(trickName)
+    const remove = createRemoveOption()
+
+    dropdown.appendChild(addLanded)
+    dropdown.appendChild(details)
+    dropdown.appendChild(divider)
+    dropdown.appendChild(remove)
+  } else {
+    const dropdown = document.createElement("div")
+    dropdown.classList.add("dropdown-menu")
+
+    const divider = document.createElement("div")
+    divider.classList.add("dropdown-divider")
+
+    const addTarget = createAddTargetOption()
+    const addLanded = createAddLandedOption()
+    const details = createDetailsOption(trickName)
+
+    dropdown.appendChild(addTarget)
+    dropdown.appendChild(addLanded)
+    dropdown.appendChild(details)
+  }
+}
+
+function createDetailsOption(trickName) {
+  let trick = findTrickFromTrickName(trickName)
+
+  const dropdown = document.createElement("div")
+  dropdown.classList.add("dropdown-item")
+  const btn = document.createElement("button")
+  btn.classList.add("btn", "p-0", "m-0", "add-landeed-log-btn")
+  const link = document.createElement("a")
+  link.href = trick.link
+  const cont = document.createElement("div")
+  cont.classList.add("container")
+  const row = document.createElement("div")
+  row.classList.add("row")
+  const col = document.createElement("col")
+  col.classList.add("col", "mr-3")
+  const icon = document.createElement("span")
+  icon.textContent = "read_more"
+  const col2 = document.createElement("col")
+  col2.textContent = "Details"
+
+  col.appendChild(icon)
+  row.appendChild(col)
+  row.appendChild(col2)
+  cont.appendChild(row)
+  link.appendChild(cont)
+  btn.appendChild(link)
+  dropdown.appendChild(btn)
+
+  return dropdown
+}
+
+function createAddTargetOption() {
+  const dropdown = document.createElement("div")
+  dropdown.classList.add("dropdown-item")
+  const btn = document.createElement("button")
+  btn.classList.add("btn", "p-0", "m-0", "add-target-log-btn")
+  const cont = document.createElement("div")
+  cont.classList.add("container")
+  const row = document.createElement("div")
+  row.classList.add("row")
+  const col = document.createElement("col")
+  col.classList.add("col", "mr-3")
+  const icon = document.createElement("span")
+  icon.textContent = "outlined_flag"
+  const col2 = document.createElement("col")
+  col2.textContent = "Add to target"
+
+  col.appendChild(icon)
+  row.appendChild(col)
+  row.appendChild(col2)
+  cont.appendChild(row)
+  btn.appendChild(cont)
+  dropdown.appendChild(btn)
+
+  return dropdown
+}
+
+function createAddLandedOption() {
+  const dropdown = document.createElement("div")
+  dropdown.classList.add("dropdown-item")
+  const btn = document.createElement("button")
+  btn.classList.add("btn", "p-0", "m-0", "add-landed-log-btn")
+  const cont = document.createElement("div")
+  cont.classList.add("container")
+  const row = document.createElement("div")
+  row.classList.add("row")
+  const col = document.createElement("col")
+  col.classList.add("col", "mr-3")
+  const icon = document.createElement("span")
+  icon.textContent = "task_alt"
+  const col2 = document.createElement("col")
+  col2.textContent = "Add to landed"
+
+  col.appendChild(icon)
+  row.appendChild(col)
+  row.appendChild(col2)
+  cont.appendChild(row)
+  btn.appendChild(cont)
+  dropdown.appendChild(btn)
+
+  return dropdown
+}
+
+function createRemoveOption() {
+  const dropdown = document.createElement("div")
+  dropdown.classList.add("dropdown-item")
+  const btn = document.createElement("button")
+  btn.classList.add("btn", "p-0", "m-0", "remove-trick-btn")
+  const cont = document.createElement("div")
+  cont.classList.add("container")
+  const row = document.createElement("div")
+  row.classList.add("row")
+  const col = document.createElement("col")
+  col.classList.add("col", "mr-3")
+  const icon = document.createElement("span")
+  icon.textContent = "remove_circle_outline"
+  const col2 = document.createElement("col")
+  col2.textContent = "Remove"
+
+  col.appendChild(icon)
+  row.appendChild(col)
+  row.appendChild(col2)
+  cont.appendChild(row)
+  btn.appendChild(cont)
+  dropdown.appendChild(btn)
+
+  return dropdown
+}
+
+
+
+
 // initialize all local storage and session storage data
 function initAllStorage() {
   let locStor = ["landed", "target", "recommended"]
