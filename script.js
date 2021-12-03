@@ -68,8 +68,13 @@ function compareInputDataLog(simpInputValue, inputValue) {
 
     // simplify strings
     let simpName = simplifyStr(name)
-    let simpPrereqs = prereqs.map(simplifyStr).join(" ")
-    let simpNicknames = nicknames.map(simplifyStr).join(" ")
+
+    let arrSimpPrereqs = prereqs.map(simplifyStr)
+    let arrSimpNicknames = nicknames.map(simplifyStr)
+    let simpPrereqs = arrSimpPrereqs.join(" ")
+    let simpNicknames = arrSimpNicknames.join(" ")
+
+    let arrInputValue = inputValue.split(" ")
 
     // compare simpInputValue to these strings, and add the name to matches if there is a match
     if (simpName.includes(simpInputValue)) {
@@ -88,10 +93,11 @@ function compareInputDataLog(simpInputValue, inputValue) {
       matches.push(trick)
     } else if (simpNicknames.includes(simpInputValue)) {
       matches.push(trick)
-    }
+    } 
   }
-  console.log("doing seomthing sus")
 
+
+  console.log("doing sus")
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
@@ -221,6 +227,8 @@ function displaySearchResults() {
   // sort results before displaying them
   sortSearchResults()
   displaySearchResultsHeader()
+  onClickAdd()
+  
 }
 
 // remove trick from log
@@ -340,7 +348,7 @@ function trickArrToStrArr(trickArr) {
 // add trick to log (landed, target)
 function onClickAddLog() {
   $(document).ready(function() {
-    $(".add-landedl-log-btn").click(function() {
+    $(".add-landed-btn").click(function() {
       let landedTricks = JSON.parse(localStorage.getItem("landed"))
       // find name of trick associated with add to landed button
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
@@ -358,19 +366,25 @@ function onClickAddLog() {
         alert("tried to add dupe trick to landed")
       }
     })
-    $(".add-target-log-btn").click(function() {
+    $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
       // find name of trick associated with add to target button
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "target" in local storage
       trickName = trickName.toLowerCase()
       let arrStrTrickIndex = strArrTricks()
-      let trickIndex = arrStrTrickNames.indexOf(trickName)
-      targetTricks.push(tricks[trickIndex])
+      let trickIndex = arrStrTrickIndex.indexOf(trickName)
+      let targetTricksStrArr = trickArrToStrArr(targetTricks)
+      if (!targetTricksStrArr.includes(trickName)) {
+        targetTricks.push(tricks[trickIndex])
+        let targetTricksJsonStr = JSON.stringify(targetTricks)
+        localStorage.setItem("target", targetTricksJsonStr)
+        alert(trickName + " added to target")
+      } else {
+        alert("tried to add dupe trick to landed")
+      }
 
-      let targetTricksJsonStr = JSON.stringify(targetTricks)
-      localStorage.setItem("target", targetTricksJsonStr)
-      alert(trickName + " added to target")
+      
     })
   })
 }
