@@ -296,11 +296,15 @@ function onClickAdd() {
       let arrStrTrickNames = strArrTricks()
       trickName = trickName.toLowerCase()
       let trickIndex = arrStrTrickNames.indexOf(trickName)
-      landedTricks.push(tricks[trickIndex])
-
-      let landedTricksJsonStr = JSON.stringify(landedTricks)
-      localStorage.setItem("landed", landedTricksJsonStr)
-      alert(trickName + " added to landed")
+      let landedTricksStrArr = trickArrToStrArr(landedTricks)
+      if (!landedTricksStrArr.includes(trickName)) {
+        landedTricks.push(tricks[trickIndex])
+        let landedTricksJsonStr = JSON.stringify(landedTricks)
+        localStorage.setItem("landed", landedTricksJsonStr)
+        alert(trickName + " added to landed")
+      } else {
+        alert("tried to add dupe trick to landed")
+      }
     })
     $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -308,16 +312,21 @@ function onClickAdd() {
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "target" in local storage
       trickName = trickName.toLowerCase()
-      let arrStrTrickNames = strArrTricks()
-      let trickIndex = arrStrTrickNames.indexOf(trickName)
-      targetTricks.push(tricks[trickIndex])
+      let arrStrTrickIndex = strArrTricks()
+      let trickIndex = arrStrTrickIndex.indexOf(trickName)
+      let targetTricksStrArr = trickArrToStrArr(targetTricks)
+      if (!targetTricksStrArr.includes(trickName)) {
+        targetTricks.push(tricks[trickIndex])
+        let targetTricksJsonStr = JSON.stringify(targetTricks)
+        localStorage.setItem("target", targetTricksJsonStr)
+        alert(trickName + " added to target")
+      } else {
+        alert("tried to add dupe trick to landed")
+      }
 
-      let targetTricksJsonStr = JSON.stringify(targetTricks)
-      localStorage.setItem("target", targetTricksJsonStr)
-      alert(trickName + " added to target")
+      
     })
   })
-  console.log("onClickAdd is running hela")
 }
 
 function trickArrToStrArr(trickArr) {
@@ -404,6 +413,7 @@ function onLoadProfile() {
   handlePopover()
   // attach function to buttons to add tricks
   onClickAdd()
+  onClickAddLog()
   // attach function to buttons to remove tricks
   onClickRemove()
 }
@@ -412,12 +422,12 @@ function onLoadSearch() {
   displaySearchResults()
   // attach function to buttons to add tricks
   onClickAdd()
-  
 }
 
 function onLoadTrickDetail() {
   // attach function to buttons to add tricks
   onClickAdd()
+  onClickAddLog()
 }
 
 function onLoadBrowse() {
