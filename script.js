@@ -228,7 +228,7 @@ function displaySearchResults() {
   sortSearchResults()
   displaySearchResultsHeader()
   onClickAdd()
-  
+
 }
 
 // remove trick from log
@@ -246,12 +246,21 @@ function onClickRemove() {
       colName = colName.toLowerCase()
       // find the tricks already in this column in local storage
       let storedTricks = JSON.parse(localStorage.getItem(colName))
+      console.log(storedTricks)
       // remove trick associated with this name from the value associated with the key (colName) in local storage
       trickName = trickName.toLowerCase()
-      let trickIndex = strArrTricks().indexOf(trickName)
-      let list1 = storedTricks.slice(0, trickIndex)
-      let list2 = storedTricks.slice(trickIndex+1)
-      storedTricks = list1.concat(list2)
+      let storedTrickNamesArr = trickArrToStrArr(storedTricks)
+      let trickIndex = storedTrickNamesArr.indexOf(trickName)
+      console.log("storedTricks before the slice")
+      console.log(storedTricks)
+      let l1 = storedTricks.slice(0, trickIndex)
+      let l2 = storedTricks.slice(trickIndex+1)
+      storedTricks = l1.concat(l2)
+      console.log("storedTricks after the slice")
+      
+      console.log(storedTricks)
+      console.log(typeof(storedTricks))
+      
       storedTricksJSON = JSON.stringify(storedTricks)
       localStorage.setItem(colName, storedTricks)
 
@@ -269,35 +278,13 @@ function strArrTricks() {
   return strTricksArr
 }
 
-// removes duplicate tricks in an array
-function removeDupes(arr) {
-  if (arr.length <= 1) return arr
-  let arrNames = []
-  for (let i=0; i<arr.length; i++) {
-    arrNames = arr[i].name
-  }
-  let resultArr = []
-  let dummyArr =[]
-  let numArr = []
-  for (let i=1; arrNames.length; i++) {
-    if (dummyArr.includes(arrNames[i])) {
-      numArr.push(arrNames[i])
-    }
-    dummyArr.push(arrNames[i])
-  }
-  for (let i=0; i<numArr.length; i++) {
-    let dupeIndex = numArr[i]
-    arr.splice(dupeIndex)
-  }
-  console.log("removeDupes is running hella")
-  return arr
-}
-
 // add trick to log (landed, target), only works for the buttons on the cards
 function onClickAdd() {
+  console.log("clickAdd just ran")
   $(document).ready(function() {
     $(".add-landed-btn").click(function() {
       let landedTricks = JSON.parse(localStorage.getItem("landed"))
+      console.log(landedTricks)
       // find name of trick associated with add to landed button
       let trickName = $(this).closest('.card-body').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "landed" in local storage
@@ -313,6 +300,7 @@ function onClickAdd() {
       } else {
         alert("tried to add dupe trick to landed")
       }
+      alert("yoooo")
     })
     $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -331,7 +319,7 @@ function onClickAdd() {
       } else {
         alert("tried to add dupe trick to landed")
       }
-
+      alert("yoooo")
       
     })
   })
@@ -347,15 +335,18 @@ function trickArrToStrArr(trickArr) {
 
 // add trick to log (landed, target)
 function onClickAddLog() {
+  console.log("onclikc add log just rad")
   $(document).ready(function() {
-    $(".add-landed-btn").click(function() {
+    $(".add-landed-log-btn").click(function() {
       let landedTricks = JSON.parse(localStorage.getItem("landed"))
       // find name of trick associated with add to landed button
-      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      let trickName = $(this).closest('.list-group-item').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "landed" in local storage
       let arrStrTrickNames = strArrTricks()
       trickName = trickName.toLowerCase()
+      console.log(trickName)
       let trickIndex = arrStrTrickNames.indexOf(trickName)
+      
       let landedTricksStrArr = trickArrToStrArr(landedTricks)
       if (!landedTricksStrArr.includes(trickName)) {
         landedTricks.push(tricks[trickIndex])
@@ -365,15 +356,17 @@ function onClickAddLog() {
       } else {
         alert("tried to add dupe trick to landed")
       }
+      alert("yoooo")
     })
-    $(".add-target-btn").click(function() {
+    $(".add-target-log-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
       // find name of trick associated with add to target button
-      let trickName = $(this).closest('.card-body').find('.trick-name').text()
+      let trickName = $(this).closest('.list-group-item').find('.trick-name').text()
       // add trick associated with this name into the value associated with the key "target" in local storage
       trickName = trickName.toLowerCase()
       let arrStrTrickIndex = strArrTricks()
       let trickIndex = arrStrTrickIndex.indexOf(trickName)
+      console.log(trickIndex)
       let targetTricksStrArr = trickArrToStrArr(targetTricks)
       if (!targetTricksStrArr.includes(trickName)) {
         targetTricks.push(tricks[trickIndex])
@@ -384,7 +377,7 @@ function onClickAddLog() {
         alert("tried to add dupe trick to landed")
       }
 
-      
+      alert("yoooo")
     })
   })
 }
@@ -449,6 +442,10 @@ function onLoadBrowse() {
   onClickAdd()
 }
 
+function init() {
+  localStorage.clear()
+  initLocalStorage()
+}
 
 const ollie = {name: "ollie", 
     difficulty: "basic",
