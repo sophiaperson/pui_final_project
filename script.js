@@ -246,7 +246,7 @@ function displaySearchResults() {
   // sort results before displaying them
   sortSearchResults()
   displaySearchResultsHeader()
-
+  displaySearchedTricks()
 }
 
 // remove trick from log
@@ -378,8 +378,7 @@ function onClickAddLog() {
 
 function findHref(trickName) {
   let trick = findTrickFromTrickName(trickName)
-  let link = (trick.name) + ".html"
-  alert(link)
+  let link = trick.link
   return link
 }
 
@@ -804,11 +803,22 @@ function createRemoveOption() {
   return dropdown
 }
 
-function testCreateRemoveOption() {
-  let lg = document.getElementsByClassName("list-group")[0]
-  lg.appendChild(createRemoveOption())
+function displaySearchedTricks() {
+  let searchResults = JSON.parse(sessionStorage.getItem("searchResults"))
+  let elem = document.getElementsByClassName("list-group-flush")[0]
+  for (let i=0; i<searchResults.length; i++) {
+    let trickName = searchResults[i]
+    addSearchEntryToDom(elem, trickName)
+  }
 }
 
+function displayAllTricks() {
+  let elem  = document.getElementsByClassName("list-group-flush")[0]
+  for (let i=0; i<tricks.length; i++) {
+    let trickName = tricks[i].name
+    addSearchEntryToDom(elem, trickName)
+  }
+}
 
 
 // initialize all local storage and session storage data
@@ -854,8 +864,7 @@ function onLoadTrickDetail() {
 }
 
 function onLoadBrowse() {
-  // attach function to buttons to add tricks
-  onClickAdd()
+  displayAllTricks()
 }
 
 function init() {
