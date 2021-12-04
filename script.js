@@ -264,7 +264,6 @@ function onClickRemove() {
   // attach function to buttons to remove tricks
   $(document).ready(function(){
     $('.remove-trick-btn').click(function() {
-      alert("trying to remove")
       // find parent that has class  list-group-item
       let listGroup = $(this).closest('.list-group-item')
       // find its child that has class trick-name
@@ -289,6 +288,7 @@ function onClickRemove() {
       storedTricksJSON = JSON.stringify(storedTricks)
       
       localStorage.setItem(colName, storedTricksJSON)
+      window.location.reload()
     })
   })
 }
@@ -319,6 +319,9 @@ function onClickAdd() {
       } else {
         showFeedbackModal("landed", trickName)
       }
+      if ($(".active").find("a").text() == "Personal Log") {
+        window.location.reload()
+      }
     })
     $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -335,7 +338,9 @@ function onClickAdd() {
       } else {
         showFeedbackModal("target", trickName)
       }
-      
+      if ($(".active").find("a").text() == "Personal Log") {
+        window.location.reload()
+      }
     })
   })
 }
