@@ -65,7 +65,7 @@
   <div class="input-group w-25 mx-auto pt-5">
     <input id="search-input" type="text" class="form-control" placeholder="Search skate trick (e.g. kickflip)">
     <div class="input-group-append">
-      <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()">
+      <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()" aria-label="search">
         <span>
           <i class="fa fa-search"></i>
         </span>
@@ -86,45 +86,6 @@
       <li class="list-group-item">
         <div>
           <h5 id="search-results"></h5>
-        </div>
-      </li>
-
-
-      <!--search entry-->
-      <li class="list-group-item">
-        <div class="card">
-          <div class="row g-0">
-            <!--trick image-->
-            <div class="col-md-4">
-              <a href="kickflip.html">
-                <div class="dummy"></div>
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </a>
-            </div>
-
-            <!--trick text details-->
-            <div class="col-md-8">
-              <div class="card-body search-entry text">
-                <h5 class="card-title search-entry trick-name">Kickflip</h5>
-                <div class="card-title search-entry trick-difficulty">Basic</div>
-                
-                <!--trick tag flex container-->
-                <div class="container trick-tag-container">
-                  <div class="trick-tag">Ollie</div>
-                  <div class="trick-tag">Kickflip</div>
-                </div>
-
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-
-                <div>
-                  <button type="submit" class="btn btn-primary add-landed-btn">Add to landed</button>
-                  <button type="submit" class="btn btn-primary add-target-btn">Add to target</button>
-                </div>
-              
-
-              </div>
-            </div>
-          </div>
         </div>
       </li>
 
