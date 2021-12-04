@@ -193,6 +193,31 @@ section {
 
 
 /* trick detail page style */
+#detail-image-container{
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  overflow: clip;
+}
+
+#detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-small-image-container {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  overflow: clip;
+}
+
+.detail-small-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* about page style*/
 #about-image {
