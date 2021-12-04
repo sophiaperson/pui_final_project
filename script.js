@@ -558,7 +558,6 @@ function createSearchEntry(trickName) {
 function addSearchEntryToDom(elem, trickName) {
   const entry = createSearchEntry(trickName)
   elem.appendChild(entry)
-  onClickAdd()
 }
 
 function foo() {
@@ -803,6 +802,8 @@ function createRemoveOption() {
   return dropdown
 }
 
+
+// display search result entries
 function displaySearchedTricks() {
   let searchResults = JSON.parse(sessionStorage.getItem("searchResults"))
   let elem = document.getElementsByClassName("list-group-flush")[0]
@@ -810,14 +811,40 @@ function displaySearchedTricks() {
     let trickName = searchResults[i]
     addSearchEntryToDom(elem, trickName)
   }
+  onClickAdd()
+
 }
 
+// display all tricks on trick catalog page
 function displayAllTricks() {
   let elem  = document.getElementsByClassName("list-group-flush")[0]
   for (let i=0; i<tricks.length; i++) {
     let trickName = tricks[i].name
     addSearchEntryToDom(elem, trickName)
   }
+  onClickAdd()
+
+}
+
+// display all tricks that were added to personal log
+function displayLogTricks() {
+  let landed = JSON.parse(localStorage.getItem("landed"))
+  let target = JSON.parse(localStorage.getItem("target"))
+  let recommended = JSON.parse(localStorage.getItem("recommended"))
+  for (let i= 0; i<landed.length; i++) {
+    let trickName = landed[i]
+    createQuickEntryLanded(trickName)
+  }
+  for (let i= 0; i<target.length; i++) {
+    let trickName = target[i]
+    createQuickEntryLanded(trickName)
+  }
+  for (let i= 0; i<recommended.length; i++) {
+    let trickName = recommended[i]
+    createQuickEntryLanded(trickName)
+  }
+  onClickAdd()
+  onClickRemove()
 }
 
 
@@ -847,9 +874,9 @@ function onLoadHome() {
 }
 
 function onLoadProfile() {
-  handlePopover()
   // attach function to buttons to add tricks
-  onClickAdd()
+  displayLogTricks()
+  onClickAddLog()
 }
 
 function onLoadSearch() {
@@ -859,8 +886,8 @@ function onLoadSearch() {
 
 function onLoadTrickDetail() {
   // attach function to buttons to add tricks
-  onClickAdd()
   onClickAddLog()
+  onClickAdd()
 }
 
 function onLoadBrowse() {
