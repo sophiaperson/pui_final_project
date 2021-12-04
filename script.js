@@ -484,7 +484,7 @@ function createSearchEntry(trickName) {
   const dummy = document.createElement("div")
   dummy.classList.add("dummy")
   const image = document.createElement("img")
-  image.src = "images/" + link.href.slice(-4) + "jpg"
+  image.src = "images/" + link.href.slice(0, -4) + "jpg"
   image.classList.add("img-fluid", "rounded-start")
   image.alt = "person doing " + trickName
 
@@ -823,7 +823,6 @@ function displayAllTricks() {
     addSearchEntryToDom(elem, trickName)
   }
   onClickAdd()
-
 }
 
 // display all tricks that were added to personal log
