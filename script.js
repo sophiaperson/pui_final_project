@@ -252,8 +252,10 @@ function displaySearchResults() {
 // remove trick from log
 function onClickRemove() {
   // attach function to buttons to remove tricks
+  alert("onClickRemove running")
   $(document).ready(function(){
     $('.remove-trick-btn').click(function() {
+      alert("trying to remove")
       // find parent that has class  list-group-item
       let listGroup = $(this).closest('.list-group-item')
       // find its child that has class trick-name
@@ -292,7 +294,6 @@ function strArrTricks() {
 
 // add trick to log (landed, target), only works for the buttons on the cards
 function onClickAdd() {
-  alert("onClickAdd run")
   $(document).ready(function() {
     $(".add-landed-btn").click(function() {
       let landedTricks = JSON.parse(localStorage.getItem("landed"))
@@ -308,7 +309,6 @@ function onClickAdd() {
       } else {
         alert("tried to add dupe trick to landed")
       }
-      alert("yoooo")
     })
     $(".add-target-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -325,7 +325,6 @@ function onClickAdd() {
       } else {
         alert("tried to add dupe trick to landed")
       }
-      alert("yoooo")
       
     })
   })
@@ -356,7 +355,6 @@ function onClickAddLog() {
       } else {
         alert("tried to add dupe trick to landed")
       }
-      alert("yoooo")
     })
     $(".add-target-log-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -373,7 +371,6 @@ function onClickAddLog() {
       } else {
         alert("tried to add dupe trick to landed")
       }
-      alert("yoooo")
       
     })
   })
@@ -581,7 +578,10 @@ function foo1() {
 
 function foo3() {
   createQuickEntryLanded("kickflip")
-  alert("did something")
+  createQuickEntryTarget("kickflip")
+  createQuickEntryRecommended("kickflip")
+  onClickAddLog()
+  onClickRemove()
 }
 
 function createQuickEntryLanded(trickName) {
@@ -591,11 +591,26 @@ function createQuickEntryLanded(trickName) {
   list.appendChild(entry)
 }
 
+function createQuickEntryTarget(trickName) {
+  let col = "target"
+  let entry = createQuickEntry(col, trickName)
+  let list = document.getElementsByClassName("list-group")[1]
+  list.appendChild(entry)
+}
+
+function createQuickEntryRecommended(trickName) {
+  let col = "recommended"
+  let entry = createQuickEntry(col, trickName)
+  let list = document.getElementsByClassName("list-group")[2]
+  list.appendChild(entry)
+}
+
 function createQuickEntry(col, trickName) {
   const lgi = document.createElement("div")
   lgi.classList.add("list-group-item")
 
   const header = document.createElement("span")
+  header.classList.add("trick-name")
   header.textContent = capitalizeFirstLetter(trickName)
 
   const dropright = document.createElement("div")
@@ -604,19 +619,21 @@ function createQuickEntry(col, trickName) {
   const btn = document.createElement("button")
   btn.type = "button"
   btn.classList.add("btn", "btn-light", "dropdown-toggle", "caret-off")
-  btn.dataToggle = "dropdown"
-  btn.ariaHaspopup = "true"
-  btn.ariaExpanded ="false"
+  btn.setAttribute("data-toggle", "dropdown")
+  btn.setAttribute("aria-haspopup", "true")
+  btn.setAttribute("aria-expanded", "false")
 
   const icon = document.createElement("span")
-  icon.textContent = "more_vert"
+  icon.classList.add("material-icons")
+  icon.innerHTML = "more_vert"
   const dropdown = createDropdownMenu(col, trickName)
 
   btn.appendChild(icon)
   dropright.appendChild(btn)
   dropright.appendChild(dropdown)
-  header.appendChild(dropright)
+  
   lgi.appendChild(header)
+  lgi.appendChild(dropright)
 
   return lgi
 }
@@ -676,18 +693,20 @@ function createDetailsOption(trickName) {
   const dropdown = document.createElement("div")
   dropdown.classList.add("dropdown-item")
   const btn = document.createElement("button")
-  btn.classList.add("btn", "p-0", "m-0", "add-landed-log-btn")
+  btn.classList.add("btn", "p-0", "m-0")
   const link = document.createElement("a")
   link.href = trick.link
   const cont = document.createElement("div")
   cont.classList.add("container")
   const row = document.createElement("div")
   row.classList.add("row")
-  const col = document.createElement("col")
+  const col = document.createElement("div")
   col.classList.add("col", "mr-3")
   const icon = document.createElement("span")
-  icon.textContent = "read_more"
-  const col2 = document.createElement("col")
+  icon.classList.add("material-icons")
+  icon.innerHTML = "read_more"
+  const col2 = document.createElement("div")
+  col2.classList.add("col")
   col2.textContent = "Details"
 
   col.appendChild(icon)
@@ -710,11 +729,13 @@ function createAddTargetOption() {
   cont.classList.add("container")
   const row = document.createElement("div")
   row.classList.add("row")
-  const col = document.createElement("col")
+  const col = document.createElement("div")
   col.classList.add("col", "mr-3")
   const icon = document.createElement("span")
-  icon.textContent = "outlined_flag"
-  const col2 = document.createElement("col")
+  icon.classList.add("material-icons")
+  icon.innerHTML = "outlined_flag"
+  const col2 = document.createElement("div")
+  col2.classList.add("col")
   col2.textContent = "Add to target"
 
   col.appendChild(icon)
@@ -736,11 +757,13 @@ function createAddLandedOption() {
   cont.classList.add("container")
   const row = document.createElement("div")
   row.classList.add("row")
-  const col = document.createElement("col")
+  const col = document.createElement("div")
   col.classList.add("col", "mr-3")
   const icon = document.createElement("span")
-  icon.textContent = "task_alt"
-  const col2 = document.createElement("col")
+  icon.classList.add("material-icons")
+  icon.innerHTML = "task_alt"
+  const col2 = document.createElement("div")
+  col.classList.add("col")
   col2.textContent = "Add to landed"
 
   col.appendChild(icon)
@@ -762,11 +785,13 @@ function createRemoveOption() {
   cont.classList.add("container")
   const row = document.createElement("div")
   row.classList.add("row")
-  const col = document.createElement("col")
+  const col = document.createElement("div")
   col.classList.add("col", "mr-3")
   const icon = document.createElement("span")
-  icon.textContent = "remove_circle_outline"
-  const col2 = document.createElement("col")
+  icon.classList.add("material-icons")
+  icon.innerHTML = "remove_circle_outline"
+  const col2 = document.createElement("div")
+  col2.classList.add("col")
   col2.textContent = "Remove"
 
   col.appendChild(icon)
@@ -779,6 +804,10 @@ function createRemoveOption() {
   return dropdown
 }
 
+function testCreateRemoveOption() {
+  let lg = document.getElementsByClassName("list-group")[0]
+  lg.appendChild(createRemoveOption())
+}
 
 
 
@@ -811,9 +840,6 @@ function onLoadProfile() {
   handlePopover()
   // attach function to buttons to add tricks
   onClickAdd()
-  onClickAddLog()
-  // attach function to buttons to remove tricks
-  onClickRemove()
 }
 
 function onLoadSearch() {
