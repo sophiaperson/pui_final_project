@@ -47,8 +47,11 @@ function searchButtonOnClick() {
 
 // when the user clicks search on the profile page, save the input text as input Value 
 function searchButtonOnClickLog() {
-  const searchInput = document.getElementById('search-input');
-  const inputValue = searchInput.value;
+  let searchInput = document.getElementById('search-input');
+  let inputValue = searchInput.value
+  if (inputValue == null) {
+    inputValue = sessionStorage.getItem("searchInput")
+  }
 
   simpInputValue = simplifyStr(inputValue)
   compareInputDataLog(simpInputValue, inputValue)
@@ -103,7 +106,7 @@ function compareInputDataLog(simpInputValue, inputValue) {
   sessionStorage.setItem("searchResults", JSON.stringify(matches))
   sessionStorage.setItem("searchInput", inputValue)
 
-  displaySearchResults()
+  displaySearchResultsLog()
 }
 
 // compare the input string to entries in json file (difficulty, name, nicknames, prerequisites)
@@ -247,6 +250,15 @@ function displaySearchResults() {
   sortSearchResults()
   displaySearchResultsHeader()
   displaySearchedTricks()
+}
+
+// display search results
+function displaySearchResultsLog() {
+
+  // sort results before displaying them
+  sortSearchResults()
+  displaySearchResultsHeader()
+  displaySearchedTricksLog()
 }
 
 // remove trick from log
@@ -484,7 +496,7 @@ function createSearchEntry(trickName) {
   const dummy = document.createElement("div")
   dummy.classList.add("dummy")
   const image = document.createElement("img")
-  image.src = "images/" + link.href.slice(0, -4) + "jpg"
+  image.src = "images/" + (link.href).slice(0, -4) + "jpg"
   image.classList.add("img-fluid", "rounded-start")
   image.alt = "person doing " + trickName
 
@@ -557,6 +569,11 @@ function createSearchEntry(trickName) {
 
 function addSearchEntryToDom(elem, trickName) {
   const entry = createSearchEntry(trickName)
+  elem.appendChild(entry)
+}
+
+function addSearchEntryLogToDom(elem, trickName) {
+  const entry = createSearchEntryLog(trickName)
   elem.appendChild(entry)
 }
 
@@ -802,6 +819,18 @@ function createRemoveOption() {
   return dropdown
 }
 
+// display search result entries in personal log modal
+function displaySearchedTricksLog() {
+  let searchResults = JSON.parse(sessionStorage.getItem("searchResults"))
+  let elem = document.getElementsByClassName("list-group-flush")[0]
+  for (let i=0; i<searchResults.length; i++) {
+    let trickName = searchResults[i]
+    addSearchEntryLogToDom(elem, trickName)
+  }
+  onClickAdd()
+
+}
+
 
 // display search result entries
 function displaySearchedTricks() {
@@ -876,6 +905,8 @@ function onLoadProfile() {
   // attach function to buttons to add tricks
   displayLogTricks()
   onClickAddLog()
+  sessionStorage.setItem("searchResults", JSON.stringify([]))
+  sessionStorage.setItem("searchInput", "")
 }
 
 function onLoadSearch() {
