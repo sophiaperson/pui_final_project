@@ -320,9 +320,9 @@ function onClickAdd() {
         landedTricks.push(trickName)
         let landedTricksStr = JSON.stringify(landedTricks)
         localStorage.setItem("landed", landedTricksStr)
-        alert(trickName + " added to landed")
+        showFeedbackModal("landed", trickName)
       } else {
-        alert("tried to add dupe trick to landed")
+        showFeedbackModal("landed", trickName)
       }
     })
     $(".add-target-btn").click(function() {
@@ -336,9 +336,9 @@ function onClickAdd() {
         let targetTricksStr = JSON.stringify(targetTricks)
         localStorage.setItem("target", targetTricksStr)
         
-        alert(trickName + " added to target")
+        showFeedbackModal("target", trickName)
       } else {
-        alert("tried to add dupe trick to landed")
+        showFeedbackModal("target", trickName)
       }
       
     })
@@ -366,10 +366,11 @@ function onClickAddLog() {
         landedTricks.push(trickName)
         let landedTricksStr = JSON.stringify(landedTricks)
         localStorage.setItem("landed", landedTricksStr)
-        alert(trickName + " added to landed")
+        showFeedbackModal("landed", trickName)
       } else {
-        alert("tried to add dupe trick to landed")
+        showFeedbackModal("landed", trickName)
       }
+      location.reload()
     })
     $(".add-target-log-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -382,10 +383,11 @@ function onClickAddLog() {
         let targetTricksStr = JSON.stringify(targetTricks)
         localStorage.setItem("target", targetTricksStr)
         
-        alert(trickName + " added to target")
+        showFeedbackModal("target", trickName)
       } else {
-        alert("tried to add dupe trick to landed")
+        showFeedbackModal("target", trickName)
       }
+      location.reload()
       
     })
   })
