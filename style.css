@@ -193,3 +193,14 @@ section {
 
 
 /* trick detail page style */
+
+/* about page style*/
+#about-image {
+  width: 40rem;
+  height: 30rem;
+  object-fit: cover;
+}
+
+#about-p {
+  width: 40rem;
+}
