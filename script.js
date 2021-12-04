@@ -117,7 +117,6 @@ function compareInputData(simpInputValue, inputValue) {
   let matches = []
 
   for (let i=0; i<tricks.length; i++) {
-    console.log("yoho")
     // get trick information
     let name = tricks[i].name
     let difficulty = tricks[i].difficulty
@@ -200,7 +199,6 @@ function sortSearchResults() {
     for (let i=0; i<arrResults.length; i++) {
       let trickName = arrResults[i]
       let trick = findTrickFromTrickName(trickName)
-      console.log(trick)
       if (trick.name == simpInput) {
         priority1.push(trick.name)
       } else if (trick.nicknames.includes(simpInput)) {
@@ -264,7 +262,6 @@ function displaySearchResultsLog() {
 // remove trick from log
 function onClickRemove() {
   // attach function to buttons to remove tricks
-  alert("onClickRemove running")
   $(document).ready(function(){
     $('.remove-trick-btn').click(function() {
       alert("trying to remove")
@@ -292,8 +289,6 @@ function onClickRemove() {
       storedTricksJSON = JSON.stringify(storedTricks)
       
       localStorage.setItem(colName, storedTricksJSON)
-
-      alert(trickName + " removed from " + colName)
     })
   })
 }
@@ -370,7 +365,7 @@ function onClickAddLog() {
       } else {
         showFeedbackModal("landed", trickName)
       }
-      location.reload()
+      window.location.reload()
     })
     $(".add-target-log-btn").click(function() {
       let targetTricks = JSON.parse(localStorage.getItem("target"))
@@ -387,7 +382,7 @@ function onClickAddLog() {
       } else {
         showFeedbackModal("target", trickName)
       }
-      location.reload()
+      window.location.reload()
       
     })
   })
@@ -883,7 +878,6 @@ function displayLogTricks() {
 function showFeedbackModal(btnType, trickName) {
   $(document).ready(function(){
     if (btnType == "landed") {
-      alert("yoho")
       $('#exampleModalLongTitle').text("Awesome!")
       $('#modal-message').text("Congrats on landing a " + trickName + "! Keep it up!")
     } else {
