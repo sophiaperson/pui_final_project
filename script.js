@@ -865,11 +865,11 @@ function displayLogTricks() {
   }
   for (let i= 0; i<target.length; i++) {
     let trickName = target[i]
-    createQuickEntryLanded(trickName)
+    createQuickEntryTarget(trickName)
   }
   for (let i= 0; i<recommended.length; i++) {
     let trickName = recommended[i]
-    createQuickEntryLanded(trickName)
+    createQuickEntryRecommended(trickName)
   }
   onClickAdd()
   onClickRemove()
