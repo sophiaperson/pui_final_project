@@ -1,0 +1,441 @@
+<!--kickflip.html-->
+
+<!--index.html-->
+
+<HTML lang="en">
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Skate Log</title>
+  <link rel="shortcut icon" href="images/skateboarding_icon.ico" type="image/x-icon">
+
+  <!--icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--bootstrap stylesheet-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!--custom stylesheet-->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--general javascript-->
+  <script type="text/javascript" src="script.js"></script>
+
+  <!--bootstrap library-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--react-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<!--body contains spyscroll-->
+<body data-spy="scroll" data-target="#scrollspy1" data-offset="0" onload="onLoadTrickDetail()">
+
+  <!--nav bar-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="index.html"><span class="material-icons">skateboarding</span>Skate Log</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="search.html">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="trick-browse.html">Trick Catalog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">Personal Log</a>
+        </li>
+      </ul>
+    </div>  
+  </nav>
+
+  <div class="p-5">
+
+    <!--trick detail card-->
+    <div class="trick-detail card mb-3">
+      <div class="row g-0">
+        <div class="col mr-3">
+          <div style="width:100%;">
+            <div class="dummy"></div>
+          </div>
+          
+        </div>
+
+        <div class="col">
+
+          
+          <div class="card-body search-entry text">
+
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <h1 class="trick-name">Kickflip</h1>
+                </div>
+
+                <div class="col">
+                  <h5 class="trick-difficulty align-baseline text-right pr-3">Basic</h5>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h5 class="card-title search-entry other-names font-italic">Magic flip, Ollie kickflip</h5>
+
+
+              <!--trick tag flex container-->
+              <div class="container trick-tag-container">
+                <div class="trick-tag">Ollie</div>
+                <div class="trick-tag">Kickflip</div>
+              </div>
+
+              <p class="card-text mb-3">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+              <div>
+                <button type="submit" class="btn btn-primary add-landed-btn">Add to landed</button>
+                <button type="submit" class="btn btn-primary add-target-btn">Add to target</button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Scrollspy -->
+          <div id="scrollspy1" class="sticky-top">
+            <ul class="nav flex-column nav-pills menu-sidebar">
+              <li class="nav-item">
+                <a class="nav-link" href="#rec-prereqs">Recommended Prerequisites</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#trick-tips">Trick Tips</a>
+                <ul class="nav flex-column pl-3">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#weight-dist">Foot Position & Weight Distribution</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#form-trick">Forming the Trick</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#common-mistakes">Common Mistakes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#practice-tips">Practice Tips</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#examples">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#more-advanced">More Advanced Tricks</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Scrollspy -->
+        </div>
+
+        <div class="col-md-8">
+
+          <!-- Spied element -->
+            <section id="rec-prereqs">
+              <h3>Recommended Prerequisites</h3>
+              <p>Landing these tricks will help you a lot with learning this one, but they are not technically required.</p>
+              <!--list of links to trick detail pages-->
+              <div class="list-group w-50">
+
+                <!--trick-->
+                <div class="list-group-item">
+                  <span class="trick-name">Kickflip</span>
+
+                  <!-- Dropright button -->
+                  <div class="btn-group dropright float-right">
+                    <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="material-icons">more_vert</span>
+                    </button>
+                    <!--dropdown menu-->
+                    <div class="dropdown-menu">
+
+                      <!--dropdown item "Add to landed"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0 add-landed-log-btn">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col mr-3">
+                                <span class="material-icons">task_alt</span>
+                              </div>
+                              <div class="col">
+                                Add to landed
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Add to target"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0 add-target-log-btn">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col mr-3">
+                                <span class="material-icons">outlined_flag</span>
+                              </div>
+                              <div class="col">
+                                Add to target
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Details"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0">
+                          <a href="kickflip.html">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col mr-3">
+                                  <span class="material-icons">read_more</span>
+                                </div>
+                                <div class="col">
+                                  Details
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </button>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+
+            </section>
+
+
+            <section id="trick-tips">
+              <h3>Trick Tips</h3>
+              <p>Here are some general tips for learning this trick.</p>
+
+              <section id="weight-dist">
+                <h3>Foot Position & Weight Distribution</h3>
+                
+                <p>Everyone has their own foot positioning and weight distribution on their tricks, so these are just some general guidelines that people tend to follow.</p>
+
+                <div class="w-50 mb-3">
+                  <div class="dummy"></div>
+                </div>
+
+                <p>Put your front foot between the center of the board and the front bolts angled towards the nose.Put your back foot on the center of the tail, maybe slightly closer to the toeside edge. Keep your weight on the balls of your feet. Keep your weight directly above the center of your board and between your feet.</p>
+
+              </section>
+              <section id="form-trick">
+                <h3>Forming the Trick</h3>
+                <p>Everyone has their own way to form the trick, so these are just some general guidelines that people tend to follow.</p>
+
+                <div class="w-50 mb-3">
+                  <div class="dummy"></div>
+                </div>
+
+                <p>In one motion, jump off your back foot, pop your tail against the ground, and lift your back knee towards your chest. In the same motion, bend your front foot at the ankle, dragging it diagonally on the griptape towards the heelside edge of your nose while also elevating your foot. When your front foot has reached the edge of the board, flick your foot upward and forward off the edge of the board. After you've flicked off the side of the board, lift your front knee towards your chest. Wait for the board to complete its 360 degree rotation before allowing your legs to come down. Try to catch the board with your back foot as you come down and land with your feet above the bolts.</p>
+
+              </section>
+
+              <section id="common-mistakes">
+                <h3>Common Mistakes</h3>
+                <ul>
+                  <li>Not getting the full flip</li>
+                  <ul>
+                    <li>You might be flicking too early and stopping the board's flip with your front foot. Try flicking later.</li>
+                    <li>You might not be flicking hard enough. Try flicking with more strength.</li>
+                    <li>You might be flicking too late and stopping the board's flip with your front foot. Try flicking earlier.</li>
+                  </ul>
+
+                  <li>Having the board rotate</li>
+                  <ul>
+                    <li>You might be flicking too early. Try flicking later.</li>
+                    <li>You might be turning your shoulders. Try to keep them parallel with the board. Holding onto a rail or fence might help you.</li>
+                  </ul>
+
+                  <li>Landing on the ground before the board</li>
+                  <ul>
+                    <li>You are not staying above the board. Try jumping higher or pulling your legs up to your chest faster and hold them there for longer.</li>
+                  </ul>
+
+                  <li>Landing too far forward on the nose</li>
+                  <ul>
+                    <li>Your weight is too far toward the nose. Make sure your weight is centered above the board before you pop and that you are not jumping too far toward the nose.</li>
+                  </ul>
+
+                  <li>Landing too far back on the tail</li>
+                  <ul>
+                    <li>Your weight is too far toward the tail. Make sure your weight is centered above the board before you pop and that you are not jumping too far toward the tail.</li>
+                  </ul>
+
+                  <li>The board is rocketed</li>
+                  <ul>
+                    <li>Your weight might be too far toward the tail. Make sure your weight is centered above the board before you pop and that you are not jumping too far toward the tail.</li>
+                    <li>You might be flicking too early and stopping the board's flip with your front foot. Try flicking later.</li>
+                  </ul>
+
+                </ul>
+                
+              </section>
+              <section id="practice-tips">
+                <h3>Practice Tips</h3>
+                <ul>
+                  <li>Stand on your tail with your popping foot, and practice the flicking motion with your flicking foot.</li>
+                  <li>Pop off the ground, and flick the board with your flicking foot, but only land with the flicking foot on the board.</li>
+                  <li>Pop off the ground, and flick the board with your flicking foot, but only land with the popping foot on the board.</li>
+                  <li>Try the trick while you are holding onto a rail to give yourself some extra air time.</li>
+                  <li>Pop off the ground, and flick the board with your flicking foot, but try to land on the ground after your board hits the ground.</li>
+                  <li>Pop off the ground, and flick the board with your flicking foot, but try to land on the board upside down.</li>
+                </ul>
+              </section>
+            </section>
+
+            <section id="examples">
+              <h3>Examples</h3>
+              <div class="mb-3">
+                <!--
+                <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+              -->
+              </div>
+            </section>
+
+
+
+            <section id="more-advanced">
+              <h3>More Advanced Tricks</h3>
+              <p>After you learn this trick, you'll be one step closer to landing these more advanced tricks!</p>
+
+              <!--list of links to trick detail pages-->
+              <div class="list-group w-50">
+
+
+                <!--trick-->
+                <div class="list-group-item">
+                  <span class="trick-name">Kickflip</span>
+
+                  <!-- Dropright button -->
+                  <div class="btn-group dropright float-right">
+                    <button type="button" class="btn btn-light dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="material-icons">more_vert</span>
+                    </button>
+                    <!--dropdown menu-->
+                    <div class="dropdown-menu">
+
+                      <!--dropdown item "Add to landed"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0 add-landed-log-btn">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col mr-3">
+                                <span class="material-icons">task_alt</span>
+                              </div>
+                              <div class="col">
+                                Add to landed
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Add to target"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0 add-target-log-btn">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col mr-3">
+                                <span class="material-icons">outlined_flag</span>
+                              </div>
+                              <div class="col">
+                                Add to target
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!--dropdown item "Details"-->
+                      <div class="dropdown-item">
+                        <button class="btn p-0 m-0">
+                          <a href="kickflip.html">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col mr-3">
+                                  <span class="material-icons">read_more</span>
+                                </div>
+                                <div class="col">
+                                  Details
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </button>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- Spied element -->
+        </div>
+
+        
+      </div>
+  </div>
+
+  <!-- Feedback Modal -->
+  <div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="feedback" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-message" class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <p>Skate Log 2021</p>
+  </div>
+</body>
+
+</HTML>
