@@ -111,7 +111,12 @@ section {
 .home-card {
   width: 25%;
   min-width: 16rem;
+  margin-right: 2rem;
+}
 
+#recommended-container {
+  display: flex;
+  flex-direction: row;
 }
 
 

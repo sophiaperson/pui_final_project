@@ -47,7 +47,7 @@
           <a class="nav-link" href="search.html">Search</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="trick-browse.html">Browse</a>
+          <a class="nav-link" href="trick-browse.html">Trick Catalog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html">About</a>
@@ -85,57 +85,77 @@
   <div id="recommended-div">
     <!--recommended tricks header-->
     <div id="recommended-header" class="pb-3">
-      <h3>Your Current Targets</h3>
-      <a href="profile.html">
-        <i class="material-icons">keyboard_arrow_right</i>
-      </a>
+      <h3>Trick Challenges of the Day</h3>
     </div>
 
     <!--recommended tricks grid-->
-    <div id="recommended-grid" class="container">
+    <div id="recommended-container">
 
-      <div class="col">
-        <div class="row">
           <!--trick card-->
-          <div class="recommended-trick card home-card">
-            <a href="kickflip.html">
-              <div class="dummy"></div>
-              <img class="card-img-top" src="..." alt="Card image cap">
-            </a>
-            <div class="card-body">
+            <div class="recommended-trick card home-card">
+              <a href="kickflip.html">
+                <div class="dummy"></div>
+                <img class="card-img-top" src="..." alt="Card image cap">
+              </a>
+              <div class="card-body">
 
-              <div class="card-title">
-                <h5 class="trick-name">Kickflip</h5>
-                <div class="trick-difficulty text-right float-right">Basic</div>
+                <div class="card-title">
+                  <h5 class="trick-name">Ollie</h5>
+                  <div class="trick-difficulty text-right float-right">Basic</div>
+
+                </div>
+
+                
+                <!--trick tag flex container-->
+                <div class="container trick-tag-container">
+                </div>
+
+                <p class="card-text">Pop the board off the ground with your back foot and level it out with your front foot.</p>
+
+                <div>
+                  <button type="submit" class="btn btn-sm btn-primary add-landed-btn">Add to landed</button>
+                  <button type="submit" class="btn btn-sm btn-primary add-target-btn">Add to target</button>
+                </div>
 
               </div>
-
-              
-              <!--trick tag flex container-->
-              <div class="container trick-tag-container">
-                <div class="trick-tag">Ollie</div>
-                <div class="trick-tag">Kickflip</div>
-              </div>
-
-              <p class="card-text">Pop the board off the ground with your back foot and flick off the side of the nose towards the heelside edge with your front foot to make the board rotate 360 degrees.</p>
-
-              <div>
-                <button type="submit" class="btn btn-sm btn-primary add-landed-btn">Add to landed</button>
-                <button type="submit" class="btn btn-sm btn-primary add-target-btn">Add to target</button>
-              </div>
-
             </div>
-          </div>
+
+
+          <!--trick card-->
+            <div class="recommended-trick card home-card">
+              <a href="kickflip.html">
+                <div class="dummy"></div>
+                <img class="card-img-top" src="..." alt="Card image cap">
+              </a>
+              <div class="card-body">
+
+                <div class="card-title">
+                  <h5 class="trick-name">Kickflip</h5>
+                  <div class="trick-difficulty text-right float-right">Basic</div>
+
+                </div>
+
+                
+                <!--trick tag flex container-->
+                <div class="container trick-tag-container">
+                  <div class="trick-tag">Ollie</div>
+                </div>
+
+                <p class="card-text">Pop the board off the ground with your back foot and flick off the side of the nose towards the heelside edge with your front foot to make the board rotate 360 degrees.</p>
+
+                <div>
+                  <button type="submit" class="btn btn-sm btn-primary add-landed-btn">Add to landed</button>
+                  <button type="submit" class="btn btn-sm btn-primary add-target-btn">Add to target</button>
+                </div>
+
+              </div>
+            </div>
 
 
         </div>
 
       </div>
 
-    </div>
-
-
-  </div>
 
   <!--footer-->
   <div class="jumbotron text-center" style="margin-bottom:0">
