@@ -276,6 +276,9 @@ function onClickRemove() {
       let column = $(listGroup).closest('.trick-col')
       let colName = $(column).find('.trick-col-name').text()
       colName = colName.toLowerCase()
+      if (colName == "landed tricks") colName = "landed"
+      if (colName == "target tricks") colName ="target"
+      if (colName == "suggested tricks") colName = "recommended"
       // find the tricks already in this column in local storage
       let storedTricks = JSON.parse(localStorage.getItem(colName))
       // remove trick associated with this name from the value associated with the key (colName) in local storage
