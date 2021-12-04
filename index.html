@@ -33,7 +33,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
-<body onload="onLoadHome()">
+<body onload="onLoadHome()" style="height:80rem">
   <!--navigation bar-->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="index.html">
@@ -59,23 +59,34 @@
     </div>  
   </nav>
 
+  <div>
   <!--jumbotron with message and search bar-->
-  <div class="jumbotron">
+  <div class="jumbotron p-0">
 
-    <!--message-->
-    <div class="mx-auto pb-5">
-      <h1 class="text-center">Log your Progress,<br>Find New Tricks to Learn!</h1>
-    </div>
+    <div id="slideshow-container">
+      <div id="slideshow-img-container">    
+        <!--image-->
+        <img src="images/main.jpg" alt="person doing a skateboard trick" class="jumbotron-image">
+      </div>
 
-    <!--search bar-->
-    <div class="input-group search-bar mx-auto pt-5">
-      <input id="search-input" type="text" class="form-control" placeholder="Search skate trick (e.g. kickflip)">
-      <div class="input-group-append">
-        <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()" value="search">
-          <span>
-            <i class="fa fa-search"></i>
-          </span>
-        </button>
+
+      <div id="home-message">
+        <!--message-->
+        <div class="mx-auto pb-5">
+          <h1 class="text-center">Log your Progress,<br>Find New Tricks to Learn!</h1>
+        </div>
+
+        <!--search bar-->
+        <div class="input-group search-bar mx-auto pt-5">
+          <input id="search-input" type="text" class="form-control" placeholder="Search skate trick (e.g. kickflip)">
+          <div class="input-group-append">
+            <button id="search-button" class="btn btn-primary" type="submit" onclick="searchButtonOnClick()" value="search">
+              <span>
+                <i class="fa fa-search"></i>
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -94,8 +105,10 @@
       <!--trick card-->
       <div class="recommended-trick card home-card">
         <a href="kickflip.html">
-          <div class="dummy"></div>
-          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="home-card-image-container">
+            <img class="card-img-top home-card-image" src="images/ollie.jpg" alt="person doing an ollie">
+          </div>
+          
         </a>
         <div class="card-body">
 
@@ -124,8 +137,10 @@
     <!--trick card-->
       <div class="recommended-trick card home-card">
         <a href="kickflip.html">
-          <div class="dummy"></div>
-          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="home-card-image-container">
+            <img class="card-img-top home-card-image" src="images/kickflip.jpg" alt="person doing a kickflip">
+          </div>
+          
         </a>
         <div class="card-body">
 
@@ -177,9 +192,10 @@
 
 
   <!--footer-->
-  <div class="jumbotron text-center" style="margin-bottom:0">
+  <div class="jumbotron text-center mb-0" style="position: absolute;top:80rem;width:100%">
     <p>Skate Log 2021</p>
   </div>
+</div>
 </body>
 
 </HTML>
