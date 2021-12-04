@@ -878,6 +878,21 @@ function displayLogTricks() {
   onClickRemove()
 }
 
+function showFeedbackModal(btnType, trickName) {
+  $(document).ready(function(){
+    if (btnType == "landed") {
+      alert("yoho")
+      $('#exampleModalLongTitle').text("Awesome!")
+      $('#modal-message').text("Congrats on landing a " + trickName + "! Keep it up!")
+    } else {
+      $('#exampleModalLongTitle').text("Good luck!")
+      $('#modal-message').text("You'll land that " + trickName + " soon! Keep it up!")
+    }
+    $('#my-modal').modal('show')
+  })
+  
+}
+
 
 // initialize all local storage and session storage data
 function initAllStorage() {
@@ -894,6 +909,7 @@ function initAllStorage() {
 
 /* onload functions */
 function onLoadHome() {
+  handlePopover()
   // create localStorage for personal log data if does not exist
   initAllStorage()
   // display current targets
@@ -905,6 +921,7 @@ function onLoadHome() {
 }
 
 function onLoadProfile() {
+  handlePopover()
   // attach function to buttons to add tricks
   displayLogTricks()
   onClickAddLog()
@@ -913,17 +930,20 @@ function onLoadProfile() {
 }
 
 function onLoadSearch() {
+  handlePopover()
   displaySearchResults()
   // attach function to buttons to add tricks
 }
 
 function onLoadTrickDetail() {
+  handlePopover()
   // attach function to buttons to add tricks
   onClickAddLog()
   onClickAdd()
 }
 
 function onLoadBrowse() {
+  handlePopover()
   displayAllTricks()
 }
 
