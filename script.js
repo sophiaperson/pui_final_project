@@ -246,7 +246,6 @@ function displaySearchResults() {
   // sort results before displaying them
   sortSearchResults()
   displaySearchResultsHeader()
-  onClickAdd()
 
 }
 
@@ -293,6 +292,7 @@ function strArrTricks() {
 
 // add trick to log (landed, target), only works for the buttons on the cards
 function onClickAdd() {
+  alert("onClickAdd run")
   $(document).ready(function() {
     $(".add-landed-btn").click(function() {
       let landedTricks = JSON.parse(localStorage.getItem("landed"))
@@ -380,7 +380,87 @@ function onClickAddLog() {
 }
 
 function findHref(trickName) {
-  return (findTrickFromTrickName(trickName)).href
+  let trick = findTrickFromTrickName(trickName)
+  let link = (trick.name) + ".html"
+  alert(link)
+  return link
+}
+
+function createSearchEntryLog(trickName) {
+  let trick = findTrickFromTrickName(trickName)
+
+  const lgi = document.createElement("li")
+  lgi.classList.add("list-group-item")
+
+  const card = document.createElement("div")
+  card.classList.add("card")
+
+  const row = document.createElement("div")
+  row.classList.add("row")
+  row.classList.add("g-0")
+
+  const link = document.createElement("a")
+  link.href = findHref(trickName)
+
+  const col2 = document.createElement("div")
+  col2.classList.add("col-md-12")
+
+  const cardBody = document.createElement("div")
+  cardBody.classList.add("card-body")
+  cardBody.classList.add("search-entry")
+  cardBody.classList.add("text")
+
+  const header = document.createElement("h5")
+  header.classList.add("card-title", "search-entry", "trick-name")
+  header.textContent = capitalizeFirstLetter(trickName)
+  link.appendChild(header)
+
+  const cardTitle = document.createElement("div")
+  cardTitle.classList.add("card-title", "search-entry", "trick-difficulty")
+  cardTitle.textContent = capitalizeFirstLetter(trick.difficulty)
+
+  const cont = document.createElement("div")
+  cont.classList.add("container", "trick-tag-container")
+
+  for (let i=0; i<trick.prereqs.length; i++) {
+    const tag = document.createElement("div")
+    tag.classList.add("trick-tag")
+    tag.textContent = capitalizeFirstLetter(trick.prereqs[i])
+    cont.appendChild(tag)
+  }
+
+  const desc = document.createElement("p")
+  desc.textContent = trick.description
+
+  const div = document.createElement("div")
+
+  const addLanded = document.createElement("button")
+  addLanded.type = "submit"
+  addLanded.classList.add("btn", "btn-primary", "add-landed-btn")
+  addLanded.textContent = "Add to landed"
+
+  const addTarget = document.createElement("button")
+  addTarget.type = "submit"
+  addTarget.classList.add("btn", "btn-primary", "add-target-btn")
+  addTarget.textContent = "Add to target"
+
+  const whitespace = document.createElement("textContent")
+  whitespace.textContent = '\u00A0'
+
+  div.appendChild(addLanded)
+  div.appendChild(addTarget)
+
+  cardBody.appendChild(link)
+  cardBody.appendChild(cardTitle)
+  cardBody.appendChild(cont)
+  cardBody.appendChild(desc)
+  cardBody.append(div)
+  col2.appendChild(cardBody)
+  row.appendChild(col2)
+  card.appendChild(row)
+  lgi.appendChild(card)
+
+  return lgi
 }
 
 function createSearchEntry(trickName) {
@@ -393,8 +473,8 @@ function createSearchEntry(trickName) {
   card.classList.add("card")
 
   const row = document.createElement("div")
-  card.classList.add("row")
-  card.classList.add("g-0")
+  row.classList.add("row")
+  row.classList.add("g-0")
 
   const col = document.createElement("div")
   col.classList.add("col-md-4")
@@ -402,12 +482,18 @@ function createSearchEntry(trickName) {
   const link = document.createElement("a")
   link.href = findHref(trickName)
 
+  const linkHeader = document.createElement("a")
+  linkHeader.href = findHref(trickName)
+
+  const dummy = document.createElement("div")
+  dummy.classList.add("dummy")
   const image = document.createElement("img")
   image.src = "images/" + link.href.slice(-4) + "jpg"
   image.classList.add("img-fluid", "rounded-start")
   image.alt = "person doing " + trickName
 
   link.appendChild(image)
+  link.appendChild(dummy)
   col.appendChild(link)
 
   const col2 = document.createElement("div")
@@ -421,6 +507,7 @@ function createSearchEntry(trickName) {
   const header = document.createElement("h5")
   header.classList.add("card-title", "search-entry", "trick-name")
   header.textContent = capitalizeFirstLetter(trickName)
+  linkHeader.appendChild(header)
 
   const cardTitle = document.createElement("div")
   cardTitle.classList.add("card-title", "search-entry", "trick-difficulty")
@@ -432,7 +519,7 @@ function createSearchEntry(trickName) {
   for (let i=0; i<trick.prereqs.length; i++) {
     const tag = document.createElement("div")
     tag.classList.add("trick-tag")
-    tag.textContent = trick.prereqs[i]
+    tag.textContent = capitalizeFirstLetter(trick.prereqs[i])
     cont.appendChild(tag)
   }
 
@@ -443,18 +530,21 @@ function createSearchEntry(trickName) {
 
   const addLanded = document.createElement("button")
   addLanded.type = "submit"
-  addLanded.classList.add("btn", "btn-primary", "added-landed-btn")
+  addLanded.classList.add("btn", "btn-primary", "add-landed-btn")
   addLanded.textContent = "Add to landed"
 
   const addTarget = document.createElement("button")
   addTarget.type = "submit"
-  addTarget.classList.add("btn", "btn-primary", "added-target-btn")
+  addTarget.classList.add("btn", "btn-primary", "add-target-btn")
   addTarget.textContent = "Add to target"
+
+  const whitespace = document.createElement("textContent")
+  whitespace.textContent = '\u00A0'
 
   div.appendChild(addLanded)
   div.appendChild(addTarget)
 
-  cardBody.appendChild(header)
+  cardBody.appendChild(linkHeader)
   cardBody.appendChild(cardTitle)
   cardBody.appendChild(cont)
   cardBody.appendChild(desc)
@@ -467,6 +557,38 @@ function createSearchEntry(trickName) {
 
   return lgi
 
+}
+
+function addSearchEntryToDom(elem, trickName) {
+  const entry = createSearchEntry(trickName)
+  elem.appendChild(entry)
+  onClickAdd()
+}
+
+function foo() {
+  let elem  = document.getElementsByClassName("list-group-flush")[0]
+  let trickName = "kickflip"
+  addSearchEntryToDom(elem, trickName)
+}
+
+function foo1() {
+  let elem  = document.getElementsByClassName("list-group-flush")[0]
+  let trickName = "kickflip"
+  const entry = createSearchEntryLog(trickName)
+  elem.appendChild(entry)
+  onClickAdd()
+}
+
+function foo3() {
+  createQuickEntryLanded("kickflip")
+  alert("did something")
+}
+
+function createQuickEntryLanded(trickName) {
+  let col = "landed"
+  let entry = createQuickEntry(col, trickName)
+  let list = document.getElementsByClassName("list-group")[0]
+  list.appendChild(entry)
 }
 
 function createQuickEntry(col, trickName) {
@@ -513,6 +635,7 @@ function createDropdownMenu(col, trickName) {
     dropdown.appendChild(details)
     dropdown.appendChild(divider)
     dropdown.appendChild(remove)
+    return dropdown
   } else if (col == "target") {
     const dropdown = document.createElement("div")
     dropdown.classList.add("dropdown-menu")
@@ -528,6 +651,7 @@ function createDropdownMenu(col, trickName) {
     dropdown.appendChild(details)
     dropdown.appendChild(divider)
     dropdown.appendChild(remove)
+    return dropdown
   } else {
     const dropdown = document.createElement("div")
     dropdown.classList.add("dropdown-menu")
@@ -542,6 +666,7 @@ function createDropdownMenu(col, trickName) {
     dropdown.appendChild(addTarget)
     dropdown.appendChild(addLanded)
     dropdown.appendChild(details)
+    return dropdown
   }
 }
 
@@ -551,7 +676,7 @@ function createDetailsOption(trickName) {
   const dropdown = document.createElement("div")
   dropdown.classList.add("dropdown-item")
   const btn = document.createElement("button")
-  btn.classList.add("btn", "p-0", "m-0", "add-landeed-log-btn")
+  btn.classList.add("btn", "p-0", "m-0", "add-landed-log-btn")
   const link = document.createElement("a")
   link.href = trick.link
   const cont = document.createElement("div")
