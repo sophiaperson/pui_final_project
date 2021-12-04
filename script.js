@@ -498,15 +498,15 @@ function createSearchEntry(trickName) {
   const linkHeader = document.createElement("a")
   linkHeader.href = findHref(trickName)
 
-  const dummy = document.createElement("div")
-  dummy.classList.add("dummy")
+  const imageCont = document.createElement("div")
+  imageCont.classList.add("search-card-image-container")
   const image = document.createElement("img")
-  image.src = "images/" + (link.href).slice(0, -4) + "jpg"
-  image.classList.add("img-fluid", "rounded-start")
+  image.src = "images/" + (trick.link).slice(0, -4) + "jpg"
+  image.classList.add("img-fluid", "rounded-start", "search-card-image")
   image.alt = "person doing " + trickName
 
-  link.appendChild(image)
-  link.appendChild(dummy)
+  link.appendChild(imageCont)
+  imageCont.appendChild(image)
   col.appendChild(link)
 
   const col2 = document.createElement("div")
